@@ -19,9 +19,6 @@ public class Day {
 
     @Override
     public String toString() {
-        return
-                dayOfWeek + " " +
-                        countMonth + " число"
-                ;
+        return dayOfWeek + " " + countMonth + " число";
     }
 }
