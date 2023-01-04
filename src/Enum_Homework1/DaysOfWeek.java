@@ -8,6 +8,4 @@ public class DaysOfWeek {
     public static final String FRIDAY = "Пятница";
     public static final String SATURDAY = "Суббота";
     public static final String SUNDAY = "Воскресенье";
-
-
 }
