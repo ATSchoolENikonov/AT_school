@@ -8,6 +8,6 @@ public class Vet {
     }
 
     public void treatAnimal(Animal animal) {
-        animal.health = HealthState.HEALTHY;
+        animal.setHealth(HealthState.HEALTHY);
     }
 }

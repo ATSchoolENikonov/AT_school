@@ -18,6 +18,9 @@ public class Horse extends Animal {
             System.out.println("Not enough food for that beast");
         } else System.out.println("Food left : " + getFoodCounter());
     }
+    public void sleep() {
+        System.out.println(getName()+ " is sleeping");
+    }
 
     @Override
     public String toString() {

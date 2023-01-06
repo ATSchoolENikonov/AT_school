@@ -7,7 +7,12 @@ public abstract class Animal {
     private int foodCounter;
     private String location;
     private int counter;
-    HealthState health;
+
+    public void setHealth(HealthState health) {
+        this.health = health;
+    }
+
+    private HealthState health;
 
     public String getName() {
         return name;
@@ -30,19 +35,11 @@ public abstract class Animal {
         this.foodCounter = foodCounter;
     }
 
-    public void makeSound() {
-        System.out.println("Animal voice");
-    }
+    public abstract void makeSound();
 
-    public void eat() {
-        System.out.println("Animal is eating");
-        foodCounter--;
-        System.out.println(foodCounter);
-    }
+    public abstract void  eat();
 
-    public void sleep() {
-        System.out.println("Animal is sleeping");
-    }
+    public abstract void sleep();
 
     @Override
     public String toString() {
