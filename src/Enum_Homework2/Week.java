@@ -25,8 +25,10 @@ public class Week {
         this.day6.setCountMonth(sat);
         this.day7.setDayOfWeek(DaysOfWeek.SUNDAY);
         this.day7.setCountMonth(sun);
+
         this.countYear = countYear;
     }
+
     @Override
     public String toString() {
         return "Неделя ["+countYear+ "] :\n" +
