@@ -1,8 +1,9 @@
 package Animals;
 
 public class Cat extends Animal {
-    public Cat(String name, String food, int foodCounter, String location, int counter, HealthState health) {
-        super(name, food, foodCounter, location, counter, health);
+    public Cat(String name, String food, int foodCounter, String location, HealthState health) {
+        super(name, food, foodCounter, location, health);
+        setCounter(getCounter() + 1);
     }
 
     @Override
@@ -16,10 +17,13 @@ public class Cat extends Animal {
         setFoodCounter(getFoodCounter() - 2);
         if (getFoodCounter() < 0) {
             System.out.println("Not enough food for that beast");
-        } else System.out.println("Food left : " + getFoodCounter());
+        } else {
+            System.out.println("Food left : " + getFoodCounter());
+        }
     }
+
     public void sleep() {
-        System.out.println(getName()+ " is sleeping");
+        System.out.println(getName() + " is sleeping");
     }
 
     @Override
