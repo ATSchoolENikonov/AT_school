@@ -3,7 +3,6 @@ package Animals;
 public class Cat extends Animal {
     public Cat(String name, String food, int foodCounter, String location, HealthState health) {
         super(name, food, foodCounter, location, health);
-        setCounter(getCounter() + 1);
     }
 
     @Override

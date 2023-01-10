@@ -34,6 +34,7 @@ public abstract class Animal {
         this.foodCounter = foodCounter;
         this.location = location;
         this.health = health;
+        setCounter(getCounter() + 1);
     }
 
     public void setFoodCounter(int foodCounter) {

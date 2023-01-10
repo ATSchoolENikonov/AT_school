@@ -4,7 +4,6 @@ public class Horse extends Animal {
 
     public Horse(String name, String food, int foodCounter, String location, HealthState health) {
         super(name, food, foodCounter, location, health);
-        setCounter(getCounter() + 1);
     }
 
     @Override
