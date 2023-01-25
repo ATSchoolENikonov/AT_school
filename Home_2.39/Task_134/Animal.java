@@ -6,4 +6,12 @@ public class Animal {
     public static void testStaticMethod() {
         System.out.println("This is static animal");
     }
+
+    public static void setPlanet(String planet) {
+        Animal.planet = planet;
+    }
+
+    public static String getPlanet() {
+        return planet;
+    }
 }

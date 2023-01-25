@@ -42,20 +42,40 @@ public class Cat extends Animal {
         this.age = age;
         ColorEyes = colorEyes;
     }
+    public Cat(String colorEyes, double weight) {
+        this.weight = weight;
+        ColorEyes = colorEyes;
+    }
+    public Cat(double weight, String colorEyes) {
+        this.weight = weight;
+        ColorEyes = colorEyes;
+    }
+    public Cat(Double weight, String colorEyes) {
+        this.weight = weight;
+        ColorEyes = colorEyes;
+    }
+    public Cat(String colorEyes, Integer age) {
+        this.age = age;
+        ColorEyes = colorEyes;
+    }
 
     public Cat(int age) {
         this.age = age;
     }
+    public Cat(Integer age) {
+        this.age = age;
+    }
+    public Cat(String ColorEyes) {
+        this.ColorEyes =ColorEyes;
+    }
+
+
 
     public Cat(double weight) {
         this.weight = weight;
     }
 
-    public String getStatic() {
-        return planet;
-    }
-
-    public String toString4(Cat cat) {
+    public String toString4() {
         return "Cat:" +
                 " age=" + age +
                 ", ColorEyes='" + ColorEyes + '\'' +
@@ -63,7 +83,7 @@ public class Cat extends Animal {
                 ", ColorFur='" + ColorFur + '\'';
     }
 
-    public String toString3(Cat cat) {
+    public String toString3() {
         return "Cat{" +
                 "age=" + age +
                 ", ColorEyes='" + ColorEyes + '\'' +
@@ -71,20 +91,20 @@ public class Cat extends Animal {
                 '}';
     }
 
-    public String toString2(Cat cat) {
+    public String toString2() {
         return "Cat{" +
                 "age=" + age +
                 ", ColorEyes='" + ColorEyes +
                 '}';
     }
 
-    public String toStringAge(Cat cat) {
+    public String toStringAge() {
         return "Cat{" +
                 "age=" + age +
                 '}';
     }
 
-    public String toStringWeight(Cat cat) {
+    public String toStringWeight() {
         return "Cat{" +
                 "weight=" + weight +
                 '}';
