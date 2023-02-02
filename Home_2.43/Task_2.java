@@ -2,6 +2,9 @@ public class Task_2 {
     public static void main(String[] args) {
         Integer x = Integer.valueOf(args[0]);
         if (x > 0 && x < 8) {
+            System.out.println("There is mistake");
+            return;
+        }
             switch (x) {
                 case 1:
                     System.out.println("Monday");
@@ -23,10 +26,7 @@ public class Task_2 {
                     break;
                 case 7:
                     System.out.println("Sunday");
-                    break;
             }
-        } else {
-            System.out.println("There is mistake");
         }
     }
-}
+

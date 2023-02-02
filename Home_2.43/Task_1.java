@@ -10,7 +10,7 @@ public class Task_1 {
         } else if (c > a && c > b) {
             System.out.println(c);
         } else {
-            System.out.println("Условия не соблюдены");
+            System.out.println("Какие-либо из чисел равны");
         }
     }
 }
