@@ -9,21 +9,15 @@ public class Task_4 {
         /**
          * Условия задания 4.В данной реализации вариант impossible действительно impossible to reach
          */
-//        for (int i = 0; i < args.length; i++) {
-//            maxSide=Integer.parseInt(args[0]);
-//            if(maxSide<Integer.parseInt(args[i])){
-//                maxSide=Integer.parseInt(args[i]);
-//            }
-//        }
         if (c > a && c > b) {
             maxSide = c;
             firstSide = a;
             secondSide = b;
-        } else if (b > a && b > c) {
+        } else if (b > a) {
             maxSide = b;
             firstSide = a;
             secondSide = c;
-        } else if (a > b && a > c) {
+        } else {
             maxSide = a;
             firstSide = b;
             secondSide = c;
