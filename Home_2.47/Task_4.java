@@ -2,17 +2,15 @@ import java.util.Random;
 
 public class Task_4 {
     boolean isPrime(int x) {
-        boolean check = true;
         if (x < 2) {
-            check = false;
+           return  false;
         }
         for (int i = 2; i < x; i++) {
             if (x % i == 0) {
-                check = false;
-                break;
+                return false;
             }
         }
-        return check;
+        return true;
     }
 
     int nextInt(int n) {
