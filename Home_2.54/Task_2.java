@@ -8,13 +8,15 @@ public class Task_2 {
             System.out.println("Введен некорректный путь до файла.");
             System.exit(22);
         }
-
         if (str.contains("/")) {
-            System.out.println("Путь: " + str.substring(0, str.lastIndexOf("/") + 1));
-            System.out.println("Имя файла: " + str.substring(str.lastIndexOf("/") + 1));
+            printSlash(str, "/");
         } else {
-            System.out.println("Путь: " + str.substring(0, str.lastIndexOf("\\") + 1));
-            System.out.println("Имя файла: " + str.substring(str.lastIndexOf("\\") + 1));
+            printSlash(str, "\\");
         }
+    }
+
+    static void printSlash(String str, String slash) {
+        System.out.println("Путь: " + str.substring(0, str.lastIndexOf(slash) + 1));
+        System.out.println("Имя файла: " + str.substring(str.lastIndexOf(slash) + 1));
     }
 }
