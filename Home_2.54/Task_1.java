@@ -3,8 +3,7 @@ public class Task_1 {
 
     public static void main(String[] args) {
         int a = str.indexOf(args[0]);
-        str = str.replace(" ", "");
-        System.out.println(a);
+        System.out.println(str.substring(0, a).replace(" ", "").length());
     }
 
 
