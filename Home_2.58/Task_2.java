@@ -4,7 +4,7 @@ public class Task_2 {
 
         for (int i = 0; i < args.length; i++) {
             for (int j = 0; j < args[i].length(); j++) {
-                if (!(args[i].charAt(j) > '0' && args[i].charAt(j) < '9') && !(args[i].charAt(j) > 'a' && args[i].charAt(j) < 'z')) {
+                if ((args[i].charAt(j) < '0' || args[i].charAt(j) > '9') && (args[i].charAt(j) < 'a' || args[i].charAt(j) > 'z')) {
                     System.out.println("Введены некорректные символы");
                     System.exit(12);
                 }
