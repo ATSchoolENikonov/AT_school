@@ -1,39 +1,34 @@
-public class Task_3 {
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 
-    public void snakePrint(int n, int col) {
-        int x = 0;
-        int k = 2;
-        while (x < n) {
-            for (int i = 0; i < col; i++) {
-                if (x == n) {
-                    break;
-                }
-                x++;
-                System.out.print(x + " ");
+public class Task_3 {
+    public static void main(String[] args) {
+        print(9, 7);
+    }
+
+    static void print(int n, int col) {
+        int i = 1; // что печатать
+        int printed = 0; // сколько напечатали на данный момент
+        int direction = 1;
+
+        while (printed < n) {
+            System.out.print(i + " ");
+            printed++;
+            if (printed % col == 0) {
+                System.out.println();
+                direction = direction * -1;
+                printSpaces(i + col - n);
+                i = Math.min(i + col, n);
+            } else {
+                i += direction;
             }
-            System.out.println();
-            for (int i = 0, l = k * col; i < col; i++) {
-                if (x == n) {
-                    break;
-                }
-                x++;
-                System.out.print(l + " ");
-                l--;
-            }
-            System.out.println();
-            k = k + 2;
         }
     }
 
-
-    public static void main(String[] args) {
-        Integer n = Integer.valueOf(args[0]);
-        Integer col = Integer.valueOf(args[1]);
-        if (n < 1 || col < 0) {
-            System.out.println("Ошибка");
-            System.exit(33);
+    private static void printSpaces(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print("  ");
         }
-        Task_3 task = new Task_3();
-        task.snakePrint(n, col);
     }
 }
