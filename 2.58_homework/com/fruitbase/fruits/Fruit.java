@@ -7,7 +7,7 @@ public abstract class Fruit {
     private BigDecimal price;
     private String name;
 
-    public Fruit(double weight, BigDecimal price, String name) {
+    Fruit(double weight, BigDecimal price, String name) {
         this.weight = weight;
         this.price = price;
         this.name = name;
@@ -25,4 +25,8 @@ public abstract class Fruit {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

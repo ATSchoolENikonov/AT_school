@@ -4,18 +4,16 @@ import com.megabankcorp.records.Account;
 
 import java.math.BigDecimal;
 
-public class Database {
-    public void deposit(BigDecimal balance, Account acc) {
-    }
+public abstract class Database {
+    public abstract void deposit(BigDecimal balance, Account acc);
 
-    public void withdraw(BigDecimal balance, Account acc) {
-    }
 
-    protected void getAmount(Account account) {
-    }
+    abstract void withdraw(BigDecimal balance, Account acc);
 
-    void transfer(Account a, Account b) {
-        deposit(a.getBalance(), a);
-        withdraw(b.getBalance(), b);
+    protected abstract void getAmount(Account account);
+
+    void transfer(Account a, Account b,BigDecimal sum) {
+        withdraw(a.getBalance().subtract(sum), a);
+        deposit(b.getBalance().add(sum), b);
     }
 }

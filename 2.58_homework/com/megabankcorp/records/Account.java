@@ -2,7 +2,7 @@ package com.megabankcorp.records;
 
 import java.math.BigDecimal;
 
-public class Account{
+public class Account {
     private BigDecimal balance;
     private long accountNumber;
     private long accountClient;

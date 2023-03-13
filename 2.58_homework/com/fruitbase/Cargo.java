@@ -4,8 +4,8 @@ import com.fruitbase.fruits.Fruit;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 public class Cargo {
     private List<Fruit> fruit;
@@ -23,7 +23,7 @@ public class Cargo {
     }
 
     public BigDecimal getPrice() {
-        BigDecimal sumPrice = BigDecimal.valueOf(0);
+        BigDecimal sumPrice = BigDecimal.ZERO;
         for (int i = 0; i < fruit.size(); i++) {
             sumPrice = sumPrice.add(fruit.get(i).getPrice());
         }
@@ -34,11 +34,10 @@ public class Cargo {
         fruit.add(fr);
     }
 
-    void printList() {
-        for (int i = 0; i < fruit.size(); i++) {
-            System.out.print(fruit.get(i).getName() + " ");
-        }
-        System.out.println();
+    @Override
+    public String toString() {
+        return "Cargo: " +
+                fruit;
     }
 }
 
