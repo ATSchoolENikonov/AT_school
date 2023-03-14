@@ -13,7 +13,7 @@ public abstract class Database {
     protected abstract void getAmount(Account account);
 
     void transfer(Account a, Account b,BigDecimal sum) {
-        withdraw(a.getBalance().subtract(sum), a);
-        deposit(b.getBalance().add(sum), b);
+        withdraw(sum, a);
+        deposit(sum, b);
     }
 }
