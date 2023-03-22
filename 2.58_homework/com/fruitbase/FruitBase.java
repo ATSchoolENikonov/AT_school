@@ -1,5 +1,17 @@
 package com.fruitbase;
 
+import com.fruitbase.Customers.Customer;
+import com.fruitbase.Customers.FreshCustomer;
+import com.fruitbase.Customers.UniqueCustomer;
+import com.fruitbase.fruits.Apple;
+import com.fruitbase.fruits.Banana;
+import com.fruitbase.fruits.Fruit;
+import com.fruitbase.fruits.Pineapple;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FruitBase {
     private FruitCatalogue catal;
 
@@ -14,18 +26,5 @@ public class FruitBase {
             }
         }
     }
-
-    public static void main(String[] args) {
-        FruitBase fr = new FruitBase();
-        if (args.length != 0) {
-            Cargo car = new Cargo();
-            fr.takeOrder(args, car);
-            System.out.println(car);
-            System.out.println("Total Price: " + car.getPrice());
-            System.out.println("Total Weight: " + car.getWeight());
-        } else {
-            System.out.println("No valid order");
-            System.exit(12);
-        }
-    }
 }
+

@@ -14,6 +14,10 @@ public class Cargo {
         fruit = new ArrayList<>();
     }
 
+    public List<Fruit> getFruit() {
+        return fruit;
+    }
+
     public double getWeight() {
         double sumWeight = 0;
         for (int i = 0; i < fruit.size(); i++) {
@@ -32,6 +36,14 @@ public class Cargo {
 
     void addFruit(Fruit fr) {
         fruit.add(fr);
+    }
+
+    public void removeFruit(Fruit fr) {
+        for (int i = 0; i < fruit.size(); i++) {
+            if (fr.equals(fruit.get(i))) {
+                fruit.remove(i);
+            }
+        }
     }
 
     @Override
