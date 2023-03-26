@@ -9,9 +9,7 @@ public class Task_1 {
                     str[i] = str[i].replace(str[i], "");
                 }
             }
-            if (str[x].equals("")) {
-                System.out.print(str[x]);
-            } else {
+            if (!str[x].equals("")) {
                 System.out.print(str[x] + " ");
             }
             x++;
@@ -20,10 +18,12 @@ public class Task_1 {
 
     public static void main(String[] args) {
         Task_1 task = new Task_1();
+        System.out.print("Ввод: ");
         for (int i = 0; i < args.length; i++) {
             System.out.print(args[i] + " ");
         }
         System.out.println();
+        System.out.print("Вывод: ");
         task.unique(args);
     }
 }
