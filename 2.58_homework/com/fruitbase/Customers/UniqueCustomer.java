@@ -12,14 +12,15 @@ public class UniqueCustomer extends Customer {
 
     @Override
     public List<Fruit> takeFruits(Cargo cargo) {
+        List<Fruit> k=cargo.getFruit();
         int x = 0;
         while (x < cargo.getFruit().size()) {
-            for (int i = x + 1; i < cargo.getFruit().size(); i++) {
-                if (cargo.getFruit().get(x).getName().equals(cargo.getFruit().get(i).getName())) {
-                    cargo.getFruit().remove(i);
+            for (int i = x + 1; i < k.size(); i++) {
+                if (k.get(x).getName().equals(k.get(i).getName())) {
+                    k.remove(i);
                 }
             }
-            purchases.add(cargo.getFruit().get(x));
+            purchases.add(k.get(x));
             x++;
         }
         return purchases;

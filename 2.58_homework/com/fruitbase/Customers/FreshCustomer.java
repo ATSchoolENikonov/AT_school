@@ -12,9 +12,10 @@ public class FreshCustomer extends Customer {
 
     @Override
     public List<Fruit> takeFruits(Cargo cargo) {
+        List<Fruit> k=cargo.getFruit();
         for (int i = 0; i < cargo.getFruit().size(); i++) {
-            if (cargo.getFruit().get(i).isFresh()) {
-                purchases.add(cargo.getFruit().get(i));
+            if (k.get(i).isFresh()) {
+                purchases.add(k.get(i));
             }
         }
         return purchases;

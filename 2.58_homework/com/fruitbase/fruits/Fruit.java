@@ -39,7 +39,10 @@ public abstract class Fruit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Fruit fruit = (Fruit) o;
-        return Double.compare(fruit.weight, weight) == 0 && freshness == fruit.freshness && price.equals(fruit.price) && name.equals(fruit.name);
+        return Double.compare(fruit.weight, weight) == 0
+                && freshness == fruit.freshness
+                && price.equals(fruit.price)
+                && name.equals(fruit.name);
     }
 
     @Override
