@@ -16,7 +16,7 @@ public class UniqueCustomer extends Customer {
         int x = 0;
         while (x < cargo.getFruit().size()) {
             for (int i = x + 1; i < k.size(); i++) {
-                if (k.get(x).getName().equals(k.get(i).getName())) {
+                if (k.get(x).equals(k.get(i))) {
                     k.remove(i);
                 }
             }
