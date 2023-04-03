@@ -2,20 +2,18 @@ package com.fruitbase;
 
 import com.fruitbase.fruits.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class FruitCatalogue implements Serializable {
-    private static final long serialVersionUID=3L;
+public class FruitCatalogue {
     private Fruit[] fruitCatal;
 
     public FruitCatalogue() {
         fruitCatal = new Fruit[]{
-                new Pineapple(Freshness.FRESH, 44, BigDecimal.valueOf(12), "Pineapple"),
-                new Apple(Freshness.SPOILED, 12, BigDecimal.valueOf(1), "Apple"),
-                new Banana(Freshness.FRESH, 311, BigDecimal.valueOf(33), "Banana"),
-                new Orange(Freshness.FRESH, 55, BigDecimal.valueOf(2), "Orange")};
+                new Pineapple(Freshness.FRESH, 12, BigDecimal.valueOf(33), "Pineapple"),
+                new Apple(Freshness.SPOILED, 7, BigDecimal.valueOf(13), "Apple"),
+                new Banana(Freshness.FRESH, 34, BigDecimal.valueOf(66), "Banana"),
+                new Orange(Freshness.FRESH, 77, BigDecimal.valueOf(3), "Orange")};
     }
 
     Fruit findFruit(String str) {

@@ -1,6 +1,5 @@
 package com.fruitbase.fruits;
 
-
 import java.math.BigDecimal;
 
 public class Apple extends Fruit {
