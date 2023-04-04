@@ -1,9 +1,11 @@
 package com.fruitbase.fruits;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public abstract class Fruit {
+public abstract class Fruit implements Serializable {
+    private static final long serialVersionUID=2L;
     private Freshness freshness;
     private double weight;
     private BigDecimal price;
