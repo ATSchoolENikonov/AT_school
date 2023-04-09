@@ -14,7 +14,7 @@ public class Water extends NatureElement {
             System.out.println(Mud.class.getName());
             return new Mud();
         } else {
-            return element;
+            return null;
         }
     }
 }

@@ -14,7 +14,7 @@ public class Fire extends NatureElement {
             System.out.println(Lava.class.getName());
             return new Lava();
         } else {
-            return element;
+            return null;
         }
     }
 

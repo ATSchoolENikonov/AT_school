@@ -1,5 +1,7 @@
 public abstract class NatureElement {
-    abstract NatureElement connect(NatureElement element);
+    NatureElement connect(NatureElement element){
+        return null;
+    }
 
     static NatureElement create(String elementName) {
         if (elementName.equals(Fire.class.getName())) {
