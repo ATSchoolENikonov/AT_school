@@ -19,7 +19,7 @@ public class FruitBase implements Serializable{
     }
 
     public void exportCatalogue() {
-        try (FileOutputStream outputStream = new FileOutputStream("C:\\Fruitbase\\HomeWork\\home.ser")) {
+        try (FileOutputStream outputStream = new FileOutputStream("home.ser")) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(catal);
             objectOutputStream.close();
@@ -30,7 +30,7 @@ public class FruitBase implements Serializable{
     }
 
     public void importCatalogue() {
-        try (FileInputStream inputStream = new FileInputStream("C:\\Fruitbase\\HomeWork\\home.ser")) {
+        try (FileInputStream inputStream = new FileInputStream("home.ser")) {
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             this.catal = (FruitCatalogue) objectInputStream.readObject();
             objectInputStream.close();

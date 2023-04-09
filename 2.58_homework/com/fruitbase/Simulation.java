@@ -4,7 +4,6 @@ import com.fruitbase.Customers.Customer;
 import com.fruitbase.Customers.FreshCustomer;
 import com.fruitbase.Customers.UniqueCustomer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
