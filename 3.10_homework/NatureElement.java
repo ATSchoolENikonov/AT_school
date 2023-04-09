@@ -10,8 +10,9 @@ public abstract class NatureElement {
             return new Air();
         } else if (elementName.equals(Earth.class.getName())) {
             return new Earth();
-        } else
+        } else {
             System.out.println("Неизвестный элемент");
-        return null;
+            return null;
+        }
     }
 }
