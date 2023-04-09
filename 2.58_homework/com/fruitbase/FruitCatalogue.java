@@ -10,10 +10,10 @@ public class FruitCatalogue {
 
     public FruitCatalogue() {
         fruitCatal = new Fruit[]{
-                new Pineapple(12, BigDecimal.valueOf(33), "Pineapple"),
-                new Apple(7, BigDecimal.valueOf(13), "Apple"),
-                new Banana(34, BigDecimal.valueOf(66), "Banana"),
-                new Orange(77, BigDecimal.valueOf(3), "Orange")};
+                new Pineapple(Freshness.FRESH, 12, BigDecimal.valueOf(33), "Pineapple"),
+                new Apple(Freshness.SPOILED, 7, BigDecimal.valueOf(13), "Apple"),
+                new Banana(Freshness.FRESH, 34, BigDecimal.valueOf(66), "Banana"),
+                new Orange(Freshness.FRESH, 77, BigDecimal.valueOf(3), "Orange")};
     }
 
     Fruit findFruit(String str) {

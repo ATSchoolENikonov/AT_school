@@ -14,18 +14,5 @@ public class FruitBase {
             }
         }
     }
-
-    public static void main(String[] args) {
-        FruitBase fr = new FruitBase();
-        if (args.length != 0) {
-            Cargo car = new Cargo();
-            fr.takeOrder(args, car);
-            System.out.println(car);
-            System.out.println("Total Price: " + car.getPrice());
-            System.out.println("Total Weight: " + car.getWeight());
-        } else {
-            System.out.println("No valid order");
-            System.exit(12);
-        }
-    }
 }
+
