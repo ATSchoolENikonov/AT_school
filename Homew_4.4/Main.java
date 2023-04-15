@@ -18,8 +18,9 @@ public class Main {
         }
         return true;
     }
-    void print(String[] st){
-        List<Integer> was=new ArrayList<>();
+
+    void print(String[] st) {
+        List<Integer> was = new ArrayList<>();
         for (int i = 1; i < st.length; i++) {
             was.add(Integer.parseInt(st[i]));
         }
