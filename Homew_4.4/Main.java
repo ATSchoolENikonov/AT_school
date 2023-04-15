@@ -10,17 +10,37 @@ public class Main {
         return res;
     }
 
+    static boolean isInteger(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+    void print(String[] st){
+        List<Integer> was=new ArrayList<>();
+        for (int i = 1; i < st.length; i++) {
+            was.add(Integer.parseInt(st[i]));
+        }
+        System.out.println(was);
+    }
+
     public static void main(String[] args) {
         Main operation = new Main();
         if (args.length == 0) {
             System.out.println("Не передано название операции");
             System.exit(3);
         }
-        for (int i = 0; i < args.length; i++) {
-            if(args[i].c){
-
+        if (args.length == 1) {
+            for (int i = 0; i < args.length; i++) {
+                if (!isInteger(args[i])) {
+                    System.out.println("Не переданы числа для операции");
+                    System.exit(4);
+                }
             }
         }
+        operation.print(args);
         switch (args[0]) {
             case "Half":
                 Half half = new Half();
@@ -39,7 +59,7 @@ public class Main {
                 System.out.println(operation.applyFunction(args, square));
                 break;
             default:
-                System.out.println("Операция " + args[0] + " не поддерживается");
+                System.out.println("Операция ->" + args[0] + "<- не поддерживается");
         }
 
     }
