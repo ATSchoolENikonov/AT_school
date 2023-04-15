@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Cargo {
+public class Cargo implements Delivery {
     private List<Fruit> fruit;
 
     public Cargo() {
         fruit = new ArrayList<>();
     }
 
-    public List<Fruit> getFruit() {
+    public List<Fruit> getFruits() {
         return fruit;
     }
 
@@ -34,7 +34,7 @@ public class Cargo {
         return sumPrice;
     }
 
-    void addFruit(Fruit fr) {
+    public void addFruit(Fruit fr) {
         fruit.add(fr);
     }
 

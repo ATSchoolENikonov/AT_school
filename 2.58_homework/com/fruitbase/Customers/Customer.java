@@ -1,6 +1,7 @@
 package com.fruitbase.Customers;
 
 import com.fruitbase.Cargo;
+import com.fruitbase.Delivery;
 import com.fruitbase.fruits.Fruit;
 
 import java.util.ArrayList;
@@ -15,5 +16,5 @@ public abstract class Customer {
         this.name = name;
     }
 
-    public abstract List<Fruit> takeFruits(Cargo customerChoice);
+    public abstract List<Fruit> takeFruits(Delivery customerChoice);
 }

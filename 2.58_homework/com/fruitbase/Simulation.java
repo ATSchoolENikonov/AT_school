@@ -10,15 +10,20 @@ import java.util.Arrays;
 public class Simulation {
     public static void main(String[] args) {
         FruitBase fr = new FruitBase();
-        Customer[] customers = new Customer[]{
-                new FreshCustomer(new ArrayList<>(), "Ivan"),
-                new UniqueCustomer(new ArrayList<>(), "Lexa")
-        };
         if (args.length == 0) {
             System.out.println("No valid order");
             System.exit(12);
         }
-        Cargo car = new Cargo();
+        if (args[0].equals("-e") || args[0].equals("--export")) {
+            fr.exportCatalogue();
+        } else if (args[0].equals("-i") || args[0].equals("--import")) {
+            fr.importCatalogue();
+        }
+        Customer[] customers = new Customer[]{
+                new FreshCustomer(new ArrayList<>(), "Ivan"),
+                new UniqueCustomer(new ArrayList<>(), "Lexa")
+        };
+        Delivery car = new Cargo();
         fr.takeOrder(args, car);
         System.out.println(car);
         System.out.println("Total Price: " + car.getPrice());
