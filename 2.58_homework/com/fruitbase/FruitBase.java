@@ -10,7 +10,7 @@ public class FruitBase implements Serializable{
         catal = new FruitCatalogue();
     }
 
-    public void takeOrder(String[] str, Cargo car) {
+    public void takeOrder(String[] str, Delivery car) {
         for (int i = 0; i < str.length; i++) {
             if (catal.findFruit(str[i]) != null) {
                 car.addFruit(catal.findFruit(str[i]));

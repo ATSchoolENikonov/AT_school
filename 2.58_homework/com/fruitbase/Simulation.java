@@ -23,7 +23,7 @@ public class Simulation {
                 new FreshCustomer(new ArrayList<>(), "Ivan"),
                 new UniqueCustomer(new ArrayList<>(), "Lexa")
         };
-        Cargo car = new Cargo();
+        Delivery car = new Cargo();
         fr.takeOrder(args, car);
         System.out.println(car);
         System.out.println("Total Price: " + car.getPrice());
