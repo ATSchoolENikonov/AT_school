@@ -1,6 +1,5 @@
 package com.fruitbase.Customers;
 
-import com.fruitbase.Cargo;
 import com.fruitbase.Delivery;
 import com.fruitbase.fruits.Fruit;
 
@@ -18,7 +17,8 @@ public class UniqueCustomer extends Customer {
         while (x < cargo.getFruits().size()) {
             for (int i = x + 1; i < k.size(); i++) {
                 if (k.get(x).equals(k.get(i))) {
-                    k.remove(i);
+                    cargo.removeFruit(k.get(i));
+//                    k.remove(i);
                 }
             }
             purchases.add(k.get(x));

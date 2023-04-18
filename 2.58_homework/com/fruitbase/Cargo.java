@@ -42,6 +42,7 @@ public class Cargo implements Delivery {
         for (int i = 0; i < fruit.size(); i++) {
             if (fr.equals(fruit.get(i))) {
                 fruit.remove(i);
+                break;
             }
         }
     }

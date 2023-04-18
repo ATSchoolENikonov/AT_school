@@ -1,6 +1,5 @@
 package com.fruitbase.Customers;
 
-import com.fruitbase.Cargo;
 import com.fruitbase.Delivery;
 import com.fruitbase.fruits.Fruit;
 
