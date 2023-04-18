@@ -1,6 +1,5 @@
 package com.fruitbase.Customers;
 
-import com.fruitbase.Cargo;
 import com.fruitbase.Delivery;
 import com.fruitbase.fruits.Fruit;
 
@@ -13,16 +12,15 @@ public class UniqueCustomer extends Customer {
 
     @Override
     public List<Fruit> takeFruits(Delivery cargo) {
-        List<Fruit> k=cargo.getFruits();
-        int x = 0;
-        while (x < cargo.getFruits().size()) {
-            for (int i = x + 1; i < k.size(); i++) {
-                if (k.get(x).equals(k.get(i))) {
-                    k.remove(i);
-                }
+        List<Fruit> k = cargo.getFruits();
+        for (int i = 0; i < k.size(); i++) {
+            Fruit fr = k.get(i);
+            if (!purchases.contains(fr)) {
+                purchases.add(fr);
             }
-            purchases.add(k.get(x));
-            x++;
+        }
+        for (int i = 0; i < purchases.size(); i++) {
+            cargo.removeFruit(purchases.get(i));
         }
         return purchases;
     }
