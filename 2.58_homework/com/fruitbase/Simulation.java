@@ -21,11 +21,11 @@ public class Simulation {
             if (args[0].contains("=") && args[0].substring(3).length() != 0) {
                 s = args[0].substring(3);
             } else {
+                System.out.println("Каталог будет экспортирован по дефолтному пути");
                 s = FruitBase.getThisIsTheWay();
             }
             try {
                 fr.exportCatalogue(s);
-                throw new IOException();
             } catch (FileNotFoundException e) {
                 System.out.println("Не найден файл " + s);
                 System.exit(11);
@@ -43,11 +43,11 @@ public class Simulation {
             if (args[0].contains("=") && args[0].substring(3).length() != 0) {
                 s = args[0].substring(3);
             } else {
+                System.out.println("Каталог будет импортирован из дефолтного пути");
                 s = FruitBase.getThisIsTheWay();
             }
             try {
                 fr.importCatalogue(s);
-                throw new UnsupportedClassVersionError();
             } catch (FileNotFoundException e) {
                 System.out.println("Не найден файл " + s);
                 System.exit(11);
