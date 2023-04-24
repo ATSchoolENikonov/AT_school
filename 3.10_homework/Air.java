@@ -14,7 +14,7 @@ public class Air extends NatureElement {
             System.out.println(Dust.class.getName());
             return new Dust();
         } else {
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 }
