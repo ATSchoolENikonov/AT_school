@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Alchemy {
     public static void main(String[] args) {
@@ -8,7 +9,6 @@ public class Alchemy {
             try {
                 elems.add(NatureElement.create(args[i]));
             } catch (NoSuchElementException e) {
-                e.printStackTrace();
                 System.exit(22);
             }
             if (elems.get(i) == null) {
@@ -23,7 +23,7 @@ public class Alchemy {
                 try {
                     elems.get(i).connect(elems.get(i + 1));
                 } catch (UnsupportedOperationException e) {
-                    e.printStackTrace();
+                    System.out.println("Операция создания элемента из текущей пары невозможна");
                 }
             }
         }

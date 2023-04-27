@@ -13,9 +13,8 @@ public class Water extends NatureElement {
         } else if (element instanceof Earth) {
                 System.out.println(Mud.class.getName());
                 return new Mud();
-
         }else if (element instanceof Energy) {
-            System.out.println(Mud.class.getName());
+            System.out.println(Steam.class.getName());
             return new Steam();
         }
         else {

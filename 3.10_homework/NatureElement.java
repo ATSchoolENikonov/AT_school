@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public abstract class NatureElement {
     NatureElement connect(NatureElement element) {
         throw new UnsupportedOperationException();
