@@ -10,6 +10,17 @@ public class Main {
         return res;
     }
 
+    List<Integer> applyFunction(String[] st, Function func, List<Integer> old) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = 1; i < st.length; i++) {
+            res.add((i - 1), func.evaluate(Integer.parseInt(st[i])));
+            if (i > 1) {
+                res.set(i - 1, (res.get(i - 1) + old.get(i - 2)));
+            }
+        }
+        return res;
+    }
+
     static boolean isInteger(String str) {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) < '0' || str.charAt(i) > '9') {
@@ -17,14 +28,6 @@ public class Main {
             }
         }
         return true;
-    }
-
-    void print(String[] st) {
-        List<Integer> was = new ArrayList<>();
-        for (int i = 1; i < st.length; i++) {
-            was.add(Integer.parseInt(st[i]));
-        }
-        System.out.println(was);
     }
 
     public static void main(String[] args) {
@@ -41,7 +44,24 @@ public class Main {
                 }
             }
         }
-        operation.print(args);
+        List<Integer> was = new ArrayList<>();
+        for (int i = 1; i < args.length; i++) {
+            was.add(Integer.parseInt(args[i]));
+        }
+        Function wave = new Function() {
+            @Override
+            public int evaluate(int x) {
+                return x;
+            }
+        };
+        Function evenSquare = x -> {
+            if (x % 2 == 0) {
+                return x * x;
+            } else {
+                return x;
+            }
+        };
+        System.out.println(was);
         switch (args[0]) {
             case "Half":
                 Half half = new Half();
@@ -58,6 +78,12 @@ public class Main {
             case "Square":
                 Square square = new Square();
                 System.out.println(operation.applyFunction(args, square));
+                break;
+            case "Wave":
+                System.out.println(operation.applyFunction(args, wave, was));
+                break;
+            case "SquareEven":
+                System.out.println(operation.applyFunction(args, evenSquare));
                 break;
             default:
                 System.out.println("Операция ->" + args[0] + "<- не поддерживается");
