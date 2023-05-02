@@ -3,12 +3,14 @@ package com.fruitbase;
 import com.fruitbase.Customers.Customer;
 import com.fruitbase.Customers.FreshCustomer;
 import com.fruitbase.Customers.UniqueCustomer;
+import com.fruitbase.fruits.Fruit;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Simulation {
     String extractPath(String argument) {
@@ -17,7 +19,7 @@ public class Simulation {
             s = argument.substring(3);
         } else {
             s = FruitBase.getThisIsTheWay();
-            System.out.println("Не указан путь до файла... " + "\nЗапись/чтение по дефолтному путь...");
+            System.out.println("Не указан путь до файла... " + "\nЗапись/чтение по дефолтному пути...");
         }
         return s;
     }
@@ -72,7 +74,27 @@ public class Simulation {
         }
         Customer[] customers = new Customer[]{
                 new FreshCustomer(new ArrayList<>(), "Ivan"),
-                new UniqueCustomer(new ArrayList<>(), "Lexa")
+                new UniqueCustomer(new ArrayList<>(), "Lexa"),
+                new Customer(new ArrayList<>(), "AnonymousAnton") {
+                    @Override
+                    public List<Fruit> takeFruits(Delivery cargo) {
+                        List<Fruit> k = cargo.getFruits();
+                        for (int i = 0; i < cargo.getFruits().size(); i++) {
+                            if ((k.get(i).getPrice().doubleValue() / cargo.getPrice().doubleValue()) > 0.75) {
+                                purchases.add(k.get(i));
+                            }
+                        }
+                        for (int i = 0; i < purchases.size(); i++) {
+                            cargo.removeFruit(purchases.get(i));
+                        }
+                        return purchases;
+                    }
+                    @Override
+                    public String toString() {
+                        return "Expensive purchases: " +
+                                purchases;
+                    }
+                }
         };
         Delivery car = new Cargo();
         fr.takeOrder(args, car);
@@ -85,4 +107,5 @@ public class Simulation {
         System.out.println(Arrays.toString(customers));
 
     }
+
 }

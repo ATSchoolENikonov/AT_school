@@ -15,7 +15,9 @@ public class FruitCatalogue implements Serializable {
                 new Pineapple(Freshness.FRESH, 44, BigDecimal.valueOf(12), "Pineapple"),
                 new Apple(Freshness.SPOILED, 12, BigDecimal.valueOf(1), "Apple"),
                 new Banana(Freshness.FRESH, 311, BigDecimal.valueOf(33), "Banana"),
-                new Orange(Freshness.FRESH, 55, BigDecimal.valueOf(2), "Orange")};
+                new Orange(Freshness.FRESH, 55, BigDecimal.valueOf(2), "Orange"),
+                new Fruit(Freshness.FRESH, 14, BigDecimal.valueOf(22), "Kiwi") {},
+                new Fruit(Freshness.SPOILED, 99, BigDecimal.valueOf(777), "Mango") {} };
     }
 
     Fruit findFruit(String str) {
