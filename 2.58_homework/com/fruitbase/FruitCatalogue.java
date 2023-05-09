@@ -7,17 +7,19 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class FruitCatalogue implements Serializable {
-    private static final long serialVersionUID=3L;
+    private static final long serialVersionUID = 3L;
     private Fruit[] fruitCatal;
 
     public FruitCatalogue() {
         fruitCatal = new Fruit[]{
                 new Pineapple(Freshness.FRESH, 44, BigDecimal.valueOf(12), "Pineapple"),
                 new Apple(Freshness.SPOILED, 12, BigDecimal.valueOf(1), "Apple"),
-                new Banana(Freshness.FRESH, 311, BigDecimal.valueOf(33), "Banana"),
+                new Banana(Freshness.FRESH, 311, BigDecimal.valueOf(52), "Banana"),
                 new Orange(Freshness.FRESH, 55, BigDecimal.valueOf(2), "Orange"),
-                new Fruit(Freshness.FRESH, 14, BigDecimal.valueOf(22), "Kiwi") {},
-                new Fruit(Freshness.SPOILED, 99, BigDecimal.valueOf(777), "Mango") {} };
+                new Fruit(Freshness.FRESH, 14, BigDecimal.valueOf(22), "Kiwi") {
+                },
+                new Fruit(Freshness.SPOILED, 99, BigDecimal.valueOf(55), "Mango") {
+                }};
     }
 
     Fruit findFruit(String str) {

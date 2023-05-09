@@ -80,7 +80,7 @@ public class Simulation {
                     public List<Fruit> takeFruits(Delivery cargo) {
                         List<Fruit> k = cargo.getFruits();
                         for (int i = 0; i < cargo.getFruits().size(); i++) {
-                            if ((k.get(i).getPrice().doubleValue() / cargo.getPrice().doubleValue()) > 0.75) {
+                            if ((k.get(i).getPrice().doubleValue() /cargo.getMaxPrice().doubleValue() ) > 0.75) {
                                 purchases.add(k.get(i));
                             }
                         }

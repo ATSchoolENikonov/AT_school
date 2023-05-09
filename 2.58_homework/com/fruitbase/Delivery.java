@@ -7,8 +7,14 @@ import java.util.List;
 
 public interface Delivery {
     double getWeight();
+
     BigDecimal getPrice();
+
     void addFruit(Fruit fruit);
+
     List<Fruit> getFruits();
-   void removeFruit(Fruit fruit);
+
+    void removeFruit(Fruit fruit);
+
+    BigDecimal getMaxPrice();
 }

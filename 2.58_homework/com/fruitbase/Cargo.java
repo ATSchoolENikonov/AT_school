@@ -48,6 +48,18 @@ public class Cargo implements Delivery {
     }
 
     @Override
+    public BigDecimal getMaxPrice() {
+        BigDecimal max = BigDecimal.ZERO;
+        for (int i = 0; i < fruit.size(); i++) {
+            if (fruit.get(i).getPrice().compareTo(max) > 0) {
+                max = fruit.get(i).getPrice();
+            }
+        }
+        return max;
+    }
+
+
+    @Override
     public String toString() {
         return "Cargo: " +
                 fruit;
