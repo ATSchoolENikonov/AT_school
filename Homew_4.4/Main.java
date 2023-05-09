@@ -10,17 +10,6 @@ public class Main {
         return res;
     }
 
-    List<Integer> applyFunction(String[] st, Function func, List<Integer> old) {
-        List<Integer> res = new ArrayList<>();
-        for (int i = 1; i < st.length; i++) {
-            res.add((i - 1), func.evaluate(Integer.parseInt(st[i])));
-            if (i > 1) {
-                res.set(i - 1, (res.get(i - 1) + old.get(i - 2)));
-            }
-        }
-        return res;
-    }
-
     static boolean isInteger(String str) {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) < '0' || str.charAt(i) > '9') {
@@ -30,8 +19,7 @@ public class Main {
         return true;
     }
 
-    public static void main(String[] args) {
-        Main operation = new Main();
+    void isValid(String[] args) {
         if (args.length == 0) {
             System.out.println("Не передано название операции");
             System.exit(3);
@@ -44,13 +32,28 @@ public class Main {
                 }
             }
         }
+    }
+
+    List<Integer> makeInteger(String[] args) {
         List<Integer> was = new ArrayList<>();
         for (int i = 1; i < args.length; i++) {
             was.add(Integer.parseInt(args[i]));
         }
+        return was;
+    }
+
+    public static void main(String[] args) {
+        Main operation = new Main();
+        operation.isValid(args);
+        operation.makeInteger(args);
         Function wave = new Function() {
+            int p = 0;
+
             @Override
             public int evaluate(int x) {
+                int tmp = x;
+                x = x + p;
+                p = tmp;
                 return x;
             }
         };
@@ -61,7 +64,7 @@ public class Main {
                 return x;
             }
         };
-        System.out.println(was);
+        System.out.println(operation.makeInteger(args));
         switch (args[0]) {
             case "Half":
                 Half half = new Half();
@@ -80,7 +83,7 @@ public class Main {
                 System.out.println(operation.applyFunction(args, square));
                 break;
             case "Wave":
-                System.out.println(operation.applyFunction(args, wave, was));
+                System.out.println(operation.applyFunction(args, wave));
                 break;
             case "SquareEven":
                 System.out.println(operation.applyFunction(args, evenSquare));
