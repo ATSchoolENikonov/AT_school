@@ -79,8 +79,9 @@ public class Simulation {
                     @Override
                     public List<Fruit> takeFruits(Delivery cargo) {
                         List<Fruit> k = cargo.getFruits();
+                        double max = cargo.getMaxPrice().doubleValue();
                         for (int i = 0; i < cargo.getFruits().size(); i++) {
-                            if ((k.get(i).getPrice().doubleValue() /cargo.getMaxPrice().doubleValue() ) > 0.75) {
+                            if ((k.get(i).getPrice().doubleValue() / max) > 0.75) {
                                 purchases.add(k.get(i));
                             }
                         }
@@ -89,6 +90,7 @@ public class Simulation {
                         }
                         return purchases;
                     }
+
                     @Override
                     public String toString() {
                         return "Expensive purchases: " +
