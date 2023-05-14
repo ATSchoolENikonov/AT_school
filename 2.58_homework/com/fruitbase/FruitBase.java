@@ -2,12 +2,17 @@ package com.fruitbase;
 
 import java.io.*;
 
-public class FruitBase implements Serializable{
-    private static final long serialVersionUID=2L;
+public class FruitBase implements Serializable {
+    private static final long serialVersionUID = 2L;
     private FruitCatalogue catal;
+    private static String ThisIsTheWay = "2.58_homework/com/fruitbase/fruits/TestTask";
 
     public FruitBase() {
         catal = new FruitCatalogue();
+    }
+
+    public static String getThisIsTheWay() {
+        return ThisIsTheWay;
     }
 
     public void takeOrder(String[] str, Delivery car) {
@@ -18,27 +23,17 @@ public class FruitBase implements Serializable{
         }
     }
 
-    public void exportCatalogue() {
-        try (FileOutputStream outputStream = new FileOutputStream("home.ser")) {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(catal);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Каталог эскпортирован");
+    public void exportCatalogue(String st) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(st);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(catal);
+        objectOutputStream.close();
     }
 
-    public void importCatalogue() {
-        try (FileInputStream inputStream = new FileInputStream("home.ser")) {
-            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-            this.catal = (FruitCatalogue) objectInputStream.readObject();
-            objectInputStream.close();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-        System.out.println("Каталог импортирован");
+    public void importCatalogue(String st) throws IOException, ClassNotFoundException {
+        FileInputStream inputStream = new FileInputStream(st);
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        this.catal = (FruitCatalogue) objectInputStream.readObject();
+        objectInputStream.close();
     }
 }
