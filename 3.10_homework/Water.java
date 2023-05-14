@@ -11,10 +11,14 @@ public class Water extends NatureElement {
             System.out.println(Steam.class.getName());
             return new Steam();
         } else if (element instanceof Earth) {
-            System.out.println(Mud.class.getName());
-            return new Mud();
-        } else {
-            return null;
+                System.out.println(Mud.class.getName());
+                return new Mud();
+        }else if (element instanceof Energy) {
+            System.out.println(Steam.class.getName());
+            return new Steam();
+        }
+        else {
+            throw new UnsupportedOperationException();
         }
     }
 }

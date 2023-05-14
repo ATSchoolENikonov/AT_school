@@ -14,7 +14,7 @@ public class Earth extends NatureElement {
             System.out.println(Pressure.class.getName());
             return new Pressure();
         } else {
-            return null;
+            throw new UnsupportedOperationException();
         }
     }
 }
