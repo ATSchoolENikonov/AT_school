@@ -1,2 +1,2 @@
-public class Banana {
+public class Banana implements  Fruit{
 }
