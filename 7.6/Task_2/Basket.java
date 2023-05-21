@@ -1,11 +1,7 @@
-package Task_1;
+package Task_2;
 
 public class Basket <T>{
-    private Object[] basket = new Object[5];
-
-    public Object[] getBasket() {
-        return basket;
-    }
+    public  Object[] basket = new Object[5];
 
     public void addItem(T fr) {
         for (int i = 0; i < basket.length; i++) {

@@ -1,4 +1,4 @@
-package Task_1;
+package Task_2;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,11 +16,11 @@ public class Main {
 //        fruitBasket.addItem(tomato);
 //        vegetableBasket.addItem(apples);
 //        vegetableBasket.addItem(banana);
-        for (int i = 0; i < fruitBasket.getBasket().length; i++) {
-            System.out.println(fruitBasket.getBasket()[i]);
+        for (int i = 0; i < fruitBasket.basket.length; i++) {
+            System.out.println(fruitBasket.basket[i]);
         }
-        for (int i = 0; i < vegetableBasket.getBasket().length; i++) {
-            System.out.println(vegetableBasket.getBasket()[i]);
+        for (int i = 0; i < vegetableBasket.basket.length; i++) {
+            System.out.println(vegetableBasket.basket[i]);
         }
     }
 }
