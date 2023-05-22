@@ -1,7 +1,17 @@
 package Task_2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
+
+    void makeSalad(Basket baskettt) {
+        System.out.println("```" + "\nГотовим салатик: " + "\n Режем " + baskettt.iterator() + "\nУгощайся!\n" +
+                "```");
+    }
+
     public static void main(String[] args) {
+        Main norBasket = new Main();
         Basket<Fruit> fruitBasket = new Basket<>();
         Basket<Vegetable> vegetableBasket = new Basket<>();
         Apples apples = new Apples();
@@ -12,15 +22,7 @@ public class Main {
         fruitBasket.addItem(banana);
         vegetableBasket.addItem(cucumber);
         vegetableBasket.addItem(tomato);
-//        fruitBasket.addItem(cucumber);
-//        fruitBasket.addItem(tomato);
-//        vegetableBasket.addItem(apples);
-//        vegetableBasket.addItem(banana);
-        for (int i = 0; i < fruitBasket.basket.length; i++) {
-            System.out.println(fruitBasket.basket[i]);
-        }
-        for (int i = 0; i < vegetableBasket.basket.length; i++) {
-            System.out.println(vegetableBasket.basket[i]);
-        }
+        norBasket.makeSalad(fruitBasket);
+        norBasket.makeSalad(vegetableBasket);
     }
 }

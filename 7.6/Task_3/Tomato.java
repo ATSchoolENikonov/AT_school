@@ -1,4 +1,4 @@
-package Task_2;
+package Task_3;
 
 public class Tomato implements Vegetable {
     @Override
