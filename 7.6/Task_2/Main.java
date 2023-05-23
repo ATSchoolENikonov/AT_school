@@ -1,12 +1,18 @@
 package Task_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+
 
 public class Main {
 
-    void makeSalad(Basket baskettt) {
-        System.out.println("```" + "\nГотовим салатик: " + "\n Режем " + baskettt.iterator() + "\nУгощайся!\n" +
+    void makeSalad(Basket<? extends Plant> baskettt) {
+        Iterator<Plant> it= baskettt.iterator();
+        System.out.println("```" + "\nГотовим салатик: " );
+        System.out.print("\n Режем ");
+        while(it.hasNext()){
+            System.out.print(it.next().getName() + " ");
+        }
+        System.out.println("\nУгощайся!\n" +
                 "```");
     }
 

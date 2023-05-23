@@ -11,16 +11,8 @@ public class Basket<T> {
         basket.put(fr, null);
     }
 
-    Iterator<String> iterator() {
-        List<String> names = new ArrayList<>();
-        for (Plant key : basket.keySet()) {
-            names.add(key.getName());
-        }
-        Iterator<String> st = names.iterator();
-//        while (it.hasNext()){
-//            System.out.println(it.next().getName());
-//        }
-        return st;
+    Iterator<Plant> iterator() {
+        return basket.keySet().iterator();
     }
 
     @Override
