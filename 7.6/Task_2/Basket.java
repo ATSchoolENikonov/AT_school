@@ -3,22 +3,23 @@ package Task_2;
 import javax.lang.model.type.NullType;
 import java.util.*;
 
-public class Basket<T> {
-    public HashMap<Plant, NullType> basket = new HashMap<>();
+public class Basket<T> implements Iterable<T> {
+    public HashMap<T, NullType> basket = new HashMap<>();
 
 
-    void addItem(Plant fr) {
+    void addItem(T fr) {
         basket.put(fr, null);
     }
 
-    Iterator<Plant> iterator() {
+    public Iterator<T> iterator() {
         return basket.keySet().iterator();
     }
 
     @Override
     public String toString() {
         return "Basket{" +
-                "basket=" + basket.keySet().iterator().next().getName() +
+                "basket=" + basket.toString() +
                 '}';
     }
+
 }

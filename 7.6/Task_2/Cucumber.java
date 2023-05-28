@@ -5,4 +5,8 @@ public class Cucumber implements Vegetable {
     public String getName() {
         return "Огурец";
     }
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

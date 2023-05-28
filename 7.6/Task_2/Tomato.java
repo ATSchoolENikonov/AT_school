@@ -5,4 +5,9 @@ public class Tomato implements Vegetable {
     public String getName() {
         return "Помидорка";
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

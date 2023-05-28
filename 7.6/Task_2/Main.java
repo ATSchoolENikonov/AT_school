@@ -1,23 +1,19 @@
 package Task_2;
 
-import java.util.Iterator;
 
+public class Main{
 
-public class Main {
-
-    void makeSalad(Basket<? extends Plant> baskettt) {
-        Iterator<Plant> it= baskettt.iterator();
+     static<T extends Plant>  void makeSalad(Basket<T> baskettt) {
         System.out.println("```" + "\nГотовим салатик: " );
-        System.out.print("\n Режем ");
-        while(it.hasNext()){
-            System.out.print(it.next().getName() + " ");
+        System.out.print("Режем ");
+        for (T item: baskettt) {
+            System.out.print(item + " ");
         }
         System.out.println("\nУгощайся!\n" +
                 "```");
     }
 
     public static void main(String[] args) {
-        Main norBasket = new Main();
         Basket<Fruit> fruitBasket = new Basket<>();
         Basket<Vegetable> vegetableBasket = new Basket<>();
         Apples apples = new Apples();
@@ -28,7 +24,7 @@ public class Main {
         fruitBasket.addItem(banana);
         vegetableBasket.addItem(cucumber);
         vegetableBasket.addItem(tomato);
-        norBasket.makeSalad(fruitBasket);
-        norBasket.makeSalad(vegetableBasket);
+        Main.makeSalad(fruitBasket);
+        Main.makeSalad(vegetableBasket);
     }
 }
