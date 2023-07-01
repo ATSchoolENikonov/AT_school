@@ -5,8 +5,7 @@ public class Task_2 {
             strAn += " " + str[i];
         }
         if (strAn.endsWith("/") || strAn.endsWith("\\")) {
-            System.out.println("Введен некорректный путь до файла.");
-            System.exit(22);
+            return mistakePath();
         }
         if (strAn.contains("/")) {
             return printSlash(strAn, "/");
@@ -22,5 +21,8 @@ public class Task_2 {
     static String printSlash(String str, String slash) {
         return ("Путь: " + str.substring(0, str.lastIndexOf(slash) + 1) + "\n" +
                 "Название файла: " + str.substring(str.lastIndexOf(slash) + 1));
+    }
+    public static String mistakePath(){
+        return ("Введен некорректный путь до файла.");
     }
 }

@@ -19,20 +19,26 @@ public class Main {
         return true;
     }
 
-    void isValid(String[] args) {
+    public String isValid(String[] args) {
         if (args.length == 0) {
-            System.out.println("Не передано название операции");
-            System.exit(3);
+            return noNameOperation();
         }
         if (args.length == 1) {
             for (int i = 0; i < args.length; i++) {
                 if (!isInteger(args[i])) {
-                    System.out.println("Не переданы числа для операции");
-                    System.exit(4);
+                    return noNumbersOperation();
                 }
             }
         }
+        return "ok";
     }
+    public String noNameOperation(){
+        return "Не передано название операции";
+    }
+    public String noNumbersOperation(){
+        return "Не переданы цифры";
+    }
+
 
     List<Integer> makeInteger(String[] args) {
         List<Integer> was = new ArrayList<>();
