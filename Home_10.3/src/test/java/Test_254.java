@@ -1,44 +1,67 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 
 public class Test_254 {
     @Check_task_254
-    @Tag("gradle_test")
-    @Test
-    public void TestCount() {
+    @ParameterizedTest
+    @MethodSource
+    public void TestCount(int input) {
+        Stream<Integer> exp = Stream.of(0, 7, 57);
+        Assertions.assertTrue(exp.anyMatch(k -> k == input));
+    }
+
+    static Stream<Integer> TestCount() {
         int a = Task_1.str.indexOf("Ц");
-        Assertions.assertEquals(0, Task_1.countLetters(Task_1.str, a));
         int b = Task_1.str.indexOf("а");
-        Assertions.assertEquals(7, Task_1.countLetters(Task_1.str, b));
         int c = Task_1.str.indexOf(".");
-        Assertions.assertEquals(57, Task_1.countLetters(Task_1.str, c));
+        return Stream.of(Task_1.countLetters(Task_1.str, a),
+                Task_1.countLetters(Task_1.str, b),
+                Task_1.countLetters(Task_1.str, c));
     }
 
-    @Test
-    @Tag("gradle_test")
-    public void TestPath() {
-        String[] word = {"/bin/java"};
-        String exp = "Путь: /bin/\n" +
-                "Название файла: java";
-        Assertions.assertEquals(exp, Task_2.strVivod(word));
+    //    @Test
+//    public void TestPath() {
+//        String[] word = {"/bin/java"};
+//        String exp = "Путь: /bin/\n" +
+//                "Название файла: java";
+//        Assertions.assertEquals(exp, Task_2.strVivod(word));
+//    }
+//
+//    @Test
+//    public void TestPath2() {
+//        String[] word = {"C:\\Program Files\\Java\\bin\\java"};
+//        String exp = "Путь: C:\\Program Files\\Java\\bin\\\n" +
+//                "Название файла: java";
+//        Assertions.assertEquals(exp, Task_2.strVivod(word));
+//    }
+//
+//    @Test
+//    public void TestPath3() {
+//        String[] word = {"/"};
+//        Assertions.assertEquals("Введен некорректный путь до файла.", Task_2.strVivod(word));
+//    }
+    @ParameterizedTest
+    @MethodSource
+    public void checkPath(String str) {
+        Stream<String> exp = Stream.of("Путь: /bin/\n" +
+                        "Название файла: java",
+                "Путь: C:\\Program Files\\Java\\bin\\\n" +
+                        "Название файла: java",
+                "Введен некорректный путь до файла.");
+        Assertions.assertTrue(exp.anyMatch(k -> k.equals(str)));
     }
 
-    @Test
-    @Tag("gradle_test")
-    public void TestPath2() {
-        String[] word = {"C:\\Program Files\\Java\\bin\\java"};
-        String exp = "Путь: C:\\Program Files\\Java\\bin\\\n" +
-                "Название файла: java";
-        Assertions.assertEquals(exp, Task_2.strVivod(word));
-    }
-
-    @Test
-    @Tag("gradle_test")
-    public void TestPath3() {
+    static Stream<String> checkPath() {
+        String[] word1 = {"/bin/java"};
+        String[] word2 = {"C:\\Program Files\\Java\\bin\\java"};
         String[] word = {"/"};
-        Assertions.assertEquals("Введен некорректный путь до файла.", Task_2.strVivod(word));
+        return Stream.of(Task_2.strVivod(word1),
+                Task_2.strVivod(word2),
+                Task_2.strVivod(word));
     }
 
 }

@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +7,6 @@ public class Test_44 {
     @Check_task_44
     private final Main operation = new Main();
 
-    @Tag("gradle_test")
     @Test
     public void checkHalf() {
         String[] st = {"этот отброситься", "4", "6", "8"};
@@ -17,7 +15,6 @@ public class Test_44 {
         Assertions.assertEquals(exp, operation.applyFunction(st, half));
     }
 
-    @Tag("gradle_test")
     @Test
     public void checkDouble() {
         String[] st = {"этот отброситься", "4", "6", "8"};
@@ -26,7 +23,6 @@ public class Test_44 {
         Assertions.assertEquals(exp, operation.applyFunction(st, doubl));
     }
 
-    @Tag("gradle_test")
     @Test
     public void checkExact() {
         String[] st = {"этот отброситься", "4", "6", "8"};
@@ -35,7 +31,6 @@ public class Test_44 {
         Assertions.assertEquals(exp, operation.applyFunction(st, exact));
     }
 
-    @Tag("gradle_test")
     @Test
     public void checkSquare() {
         String[] st = {"этот отброситься", "4", "6", "8"};
@@ -44,7 +39,6 @@ public class Test_44 {
         Assertions.assertEquals(exp, operation.applyFunction(st, square));
     }
 
-    @Tag("gradle_test")
     @Test
     public void checkEmpty() {
         String[] st = {};
@@ -52,7 +46,6 @@ public class Test_44 {
         Assertions.assertEquals(error, operation.isValid(st));
     }
 
-    @Tag("gradle_test")
     @Test
     public void checkEmptyNumbers() {
         String[] st = {"этого не будет"};
