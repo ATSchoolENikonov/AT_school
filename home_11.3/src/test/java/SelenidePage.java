@@ -2,43 +2,33 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import dev.failsafe.internal.util.Assert;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.io.File;
+
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenidePage {
+    LoginPage loginPage = new LoginPage();
+    ProductsPage productsPage = new ProductsPage();
+    InternetPage internetPage = new InternetPage();
 
     //Task_1
     @Test
     void checkPage() {
-        System.setProperty("webdriver.chrome.driver", new File("").getAbsolutePath() + "/drivers/chromedriver.exe");
-        ChromeOptions co = new ChromeOptions();
-        co.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get(LoginPage.url);
-        PageFactory.initElements(driver, loginPage);
-        String text = loginPage.initLogo.getText();
-        Assert.isTrue(text.contains("Swag Labs"), "Wrong Text!!!!");
-        driver.quit();
+        Configuration.timeout = 10000;
+        open(LoginPage.url);
+
+        Assert.isTrue(loginPage.initLogo.getText().contains("Swag Labs"), "Wrong Text!!!!");
     }
 
     //Task_2
     @Test
     void checkBurger() {
         Configuration.timeout = 10000;
-        LoginPage loginPage = new LoginPage();
-        ProductsPage productsPage = new ProductsPage();
         open(LoginPage.url);
         String cor = "https://www.saucedemo.com/inventory.html";
         loginPage.userName.val("standard_user");
@@ -53,4 +43,18 @@ public class SelenidePage {
         Assert.isTrue(currentUrlLog.contains(LoginPage.url), "Wrong Url");
         Assert.isTrue(loginPage.searchFieldLogin.getText().contains("Swag Labs"), "Wrong Text!!!!");
     }
+
+    //Task_3
+    @Test
+    void checkTheThird() {
+        Configuration.timeout = 10000;
+        open(InternetPage.url);
+        Assertions.assertFalse(internetPage.hiddenElement.exists());
+        internetPage.button.shouldBe(Condition.visible).click();
+        Wait().until(ExpectedConditions.visibilityOf(internetPage.hiddenElement));
+        Assert.isTrue(Wait().until(ExpectedConditions.visibilityOf(internetPage.hiddenElement))
+                .isDisplayed(), "Some think gone wrong");
+    }
+
+
 }
