@@ -11,6 +11,6 @@ public class LoginPage {
     SelenideElement userName = $x("//input[@id='user-name']");
     SelenideElement userPassword = $x("//input[@id='password']");
     SelenideElement logButton = $x("//input[@id='login-button']");
-    SelenideElement searchFieldLogin = $(By.xpath("//div[@class='login_logo']"));
+    SelenideElement searchFieldLogin = $x("//div[@class='login_logo']");
 
 }
