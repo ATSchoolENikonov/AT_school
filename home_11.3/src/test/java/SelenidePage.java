@@ -12,16 +12,12 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenidePage {
-    LoginPage loginPage = new LoginPage();
-    ProductsPage productsPage = new ProductsPage();
-    InternetPage internetPage = new InternetPage();
-
     //Task_1
     @Test
     void checkPage() {
         Configuration.timeout = 10000;
         open(LoginPage.url);
-
+        LoginPage loginPage = new LoginPage();
         Assert.isTrue(loginPage.initLogo.getText().contains("Swag Labs"), "Wrong Text!!!!");
     }
 
@@ -30,6 +26,8 @@ public class SelenidePage {
     void checkBurger() {
         Configuration.timeout = 10000;
         open(LoginPage.url);
+        LoginPage loginPage = new LoginPage();
+        ProductsPage productsPage = new ProductsPage();
         String cor = "https://www.saucedemo.com/inventory.html";
         loginPage.userName.val("standard_user");
         loginPage.userPassword.val("secret_sauce");
@@ -49,6 +47,7 @@ public class SelenidePage {
     void checkTheThird() {
         Configuration.timeout = 10000;
         open(InternetPage.url);
+        InternetPage internetPage = new InternetPage();
         Assertions.assertFalse(internetPage.hiddenElement.exists());
         internetPage.button.shouldBe(Condition.visible).click();
         Wait().until(ExpectedConditions.visibilityOf(internetPage.hiddenElement));
