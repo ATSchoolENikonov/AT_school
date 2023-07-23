@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SelenidePage {
+public class SelenidePageTest {
     //Task_1
     @Test
     void checkPage() {
