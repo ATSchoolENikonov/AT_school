@@ -2,7 +2,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
-import dev.failsafe.internal.util.Assert;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -24,7 +24,7 @@ public class SelenidePageTest {
         Configuration.timeout = 10000;
         open(LoginPage.url);
         LoginPage loginPage = new LoginPage();
-        Assert.isTrue(loginPage.initLogo.getText().contains("Swag Labs"), "Wrong Text!!!!");
+        Assertions.assertTrue(loginPage.initLogo.getText().contains("Swag Labs"), "Wrong Text!!!!");
     }
 
     //Task_2
@@ -37,13 +37,13 @@ public class SelenidePageTest {
         String cor = "https://www.saucedemo.com/inventory.html";
         loginPage.login();
         String currentUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
-        Assert.isTrue(currentUrl.contains(cor), "Wrong Url");
-        Assert.isTrue(productsPage.searchFieldProduct.getText().contains("Products"), "Wrong Page!!!");
+        Assertions.assertTrue(currentUrl.contains(cor), "Wrong Url");
+        Assertions.assertTrue(productsPage.searchFieldProduct.getText().contains("Products"), "Wrong Page!!!");
         productsPage.burgerButton.shouldBe(Condition.visible, Duration.ofSeconds(100)).click();
         productsPage.logoutButton.shouldBe(Condition.visible, Duration.ofSeconds(100)).click();
         String currentUrlLog = WebDriverRunner.getWebDriver().getCurrentUrl();
-        Assert.isTrue(currentUrlLog.contains(LoginPage.url), "Wrong Url");
-        Assert.isTrue(loginPage.searchFieldLogin.getText().contains("Swag Labs"), "Wrong Text!!!!");
+        Assertions.assertTrue(currentUrlLog.contains(LoginPage.url), "Wrong Url");
+        Assertions.assertTrue(loginPage.searchFieldLogin.getText().contains("Swag Labs"), "Wrong Text!!!!");
     }
 
     //Task_3
@@ -55,7 +55,7 @@ public class SelenidePageTest {
         Assertions.assertFalse(internetPage.hiddenElement.isDisplayed());
         internetPage.button.shouldBe(Condition.visible).click();
         Wait().until(ExpectedConditions.visibilityOf(internetPage.hiddenElement));
-        Assert.isTrue(internetPage.hiddenElement.getText().contains("Hello World!"), "Wrong");
+        Assertions.assertTrue(internetPage.hiddenElement.getText().contains("Hello World!"), "Wrong");
     }
 
 
