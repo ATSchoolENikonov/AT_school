@@ -15,7 +15,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
-    public Director get(int id) {
+    public  Director get(int id) {
         {
             try {
                 PreparedStatement statement = connection.prepareStatement("Select * from directors where id ='" + id + "';");

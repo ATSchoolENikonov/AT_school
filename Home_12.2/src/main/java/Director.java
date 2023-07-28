@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.util.Objects;
 
 public class Director {
     private  int id;
@@ -46,5 +47,18 @@ public class Director {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Director director = (Director) o;
+        return id == director.id && Objects.equals(firstName, director.firstName) && Objects.equals(lastName, director.lastName) && Objects.equals(birthdate, director.birthdate) && Objects.equals(country, director.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, birthdate, country);
     }
 }
