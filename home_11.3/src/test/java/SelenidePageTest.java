@@ -54,7 +54,7 @@ public class SelenidePageTest {
         InternetPage internetPage = new InternetPage();
         Assertions.assertFalse(internetPage.hiddenElement.isDisplayed());
         internetPage.button.shouldBe(Condition.visible).click();
-        Wait().until(ExpectedConditions.visibilityOf(internetPage.hiddenElement));
+        internetPage.hiddenElement.shouldBe(Condition.visible);
         Assertions.assertTrue(internetPage.hiddenElement.getText().contains("Hello World!"), "Wrong");
     }
 
