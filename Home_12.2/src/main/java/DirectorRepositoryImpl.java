@@ -1,9 +1,10 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
     private Connection connection;
-    private Director gendir = new Director();
 
     public DirectorRepositoryImpl() {
         try {
@@ -17,6 +18,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 
     @Override
     public Director get(int id) {
+        Director gendir = new Director();
         {
             try {
                 PreparedStatement statement = connection.prepareStatement("Select * from directors where id ='" + id + "';");
@@ -70,6 +72,36 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<Director> get(List<String> genres) {
+        int count=1;
+        List<Director> listDirectors = new ArrayList<>();
+        StringBuilder str=new StringBuilder();
+        str.append("?");
+        str.append(",?".repeat(genres.size()-1));
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "Select * from directors d join movies m on d.id=m.director where genre in (" + str + ");");
+            for (int i = 0; i < genres.size(); i++) {
+                statement.setString(count,genres.get(i));
+                count++;
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Director dir = new Director();
+               dir.setId(resultSet.getInt(1));
+               dir.setFirstName(resultSet.getString(2));
+               dir.setLastName(resultSet.getString(3));
+               dir.setBirthdate(resultSet.getDate(4));
+               dir.setCountry(resultSet.getString(5));
+                listDirectors.add(dir);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listDirectors;
     }
 
 }

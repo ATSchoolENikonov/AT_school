@@ -61,4 +61,15 @@ public class Director {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, birthdate, country);
     }
+
+    @Override
+    public String toString() {
+        return "Director{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

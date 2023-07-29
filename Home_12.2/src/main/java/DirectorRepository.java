@@ -1,4 +1,4 @@
-
+import java.util.List;
 
 public interface DirectorRepository {
 
@@ -7,4 +7,6 @@ public interface DirectorRepository {
     void save(Director director);
 
     void delete(Director director);
+
+    List<Director> get(List<String> genres);
 }
