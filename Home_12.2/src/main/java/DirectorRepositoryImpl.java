@@ -1,8 +1,9 @@
 import java.sql.*;
+import java.util.NoSuchElementException;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
     private Connection connection;
-    private Director gendir=new Director();
+    private Director gendir = new Director();
 
     public DirectorRepositoryImpl() {
         try {
@@ -15,18 +16,21 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
-    public  Director get(int id) {
+    public Director get(int id) {
         {
             try {
                 PreparedStatement statement = connection.prepareStatement("Select * from directors where id ='" + id + "';");
-                 ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
                     gendir.setId(resultSet.getInt(1));
                     gendir.setFirstName(resultSet.getString(2));
                     gendir.setLastName(resultSet.getString(3));
                     gendir.setBirthdate(resultSet.getDate(4));
                     gendir.setCountry(resultSet.getString(5));
+                } else {
+                    throw new NoSuchElementException("Запись с указанным id не найдена");
                 }
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -58,7 +62,11 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             PreparedStatement statement = connection.prepareStatement("delete from directors where id ='" + director.getId() + "';");
             statement.executeUpdate();
             int count = statement.getUpdateCount();
-            System.out.println("Кол-во удаленных строк = " + count);
+            if (count > 0) {
+                System.out.println("Кол-во удаленных строк = " + count);
+            } else {
+                System.out.println("Запись с указанным id не найдена");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

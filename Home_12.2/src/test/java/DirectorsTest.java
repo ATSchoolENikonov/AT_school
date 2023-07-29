@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 public class DirectorsTest {
+    DirectorRepositoryImpl impl = new DirectorRepositoryImpl();
+
     @Test
     void getByID() {
-        DirectorRepositoryImpl impl = new DirectorRepositoryImpl();
         Director dir = getExpected(7, "Vasya222", "Pupkin", "2023-07-26", "rus");
         Assertions.assertEquals(dir, impl.get(7));
     }
@@ -23,8 +25,12 @@ public class DirectorsTest {
         return director;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    @Test
+    void checkSaveDelete() {
+        Director dir = getExpected(82, "CheckSave", "Lit", "2022-07-29", "SD");
+        impl.save(dir);
+        Assertions.assertEquals(dir, impl.get(dir.getId()));
+        impl.delete(dir);
+        Assertions.assertThrows(NoSuchElementException.class, () -> impl.get(dir.getId()));
     }
 }

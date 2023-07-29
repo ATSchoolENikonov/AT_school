@@ -2,11 +2,11 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Director {
-    private  int id;
-    private  String firstName;
-    private  String lastName;
-    private  Date birthdate;
-    private  String country;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private Date birthdate;
+    private String country;
 
 
     public int getId() {
