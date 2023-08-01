@@ -2,9 +2,9 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class Movie {
-    private int id ;
+    private int id;
     private String title;
-    private String genre ;
+    private String genre;
     private Date release;
     private int director;
 

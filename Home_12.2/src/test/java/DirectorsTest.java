@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
@@ -8,8 +9,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DirectorsTest {
-    @Task_1
     DirectorRepositoryImpl impl = new DirectorRepositoryImpl();
+
+    @BeforeAll
+    public static void createBD() {
+        ConnectBD.createTableDirectors();
+        ConnectBD.createTableMovies();
+    }
+
 
     public Director getExpected(int id, String first, String last, String date, String country) {
         Director director = new Director();
@@ -23,8 +30,8 @@ public class DirectorsTest {
 
     @Test
     void getByID() {
-        Director dir = getExpected(7, "Vasya222", "Pupkin", "2023-07-26", "rus");
-        Assertions.assertEquals(dir, impl.get(7));
+        Director dir = getExpected(2, "Vasya", "Pupkin", "2022-07-29", "Polska");
+        Assertions.assertEquals(dir, impl.get(2));
     }
 
     @Test
@@ -43,10 +50,11 @@ public class DirectorsTest {
         impl.delete(dir);
         Assertions.assertThrows(NoSuchElementException.class, () -> impl.get(dir.getId()));
     }
+
     @Test
-    void checkList(){
-        List<String> genraa=List.of("Ужасы","Драчка","Эротика");
-        List<Director> expList=List.of(impl.get(3), impl.get(3), impl.get(44));
+    void checkList() {
+        List<String> genraa = List.of("Horror", "Fantasy", "Fart");
+        List<Director> expList = List.of(impl.get(2));
         Assertions.assertTrue(expList.containsAll(impl.get(genraa)));
     }
 }

@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Launch {
     public static void main(String[] args) {
-//        //Task_1
-//        Director dir = new Director();
-//        dir.setId(15);
-//        dir.setCountry("sgsg");
-//        dir.setFirstName("wwwww");
-//        dir.setLastName("sdada");
-//        DirectorRepositoryImpl im = new DirectorRepositoryImpl();
-//        List<String> genraa=List.of("Ужасы","Драчка","Эротика");
+        //Task_1
+        Director dir = new Director();
+        dir.setId(15);
+        dir.setCountry("sgsg");
+        dir.setFirstName("wwwww");
+        dir.setLastName("sdada");
+        DirectorRepositoryImpl im = new DirectorRepositoryImpl();
+        List<String> genraa=List.of("Ужасы","Драчка","Эротика");
 //        for (int i = 0; i < im.get(genraa).size(); i++) {
 //            System.out.println(im.get(genraa).get(i));
 //        }
