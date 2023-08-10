@@ -7,11 +7,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     private Connection connection;
 
     public MovieRepositoryImpl() {
-        try {
-            this.connection = ConnectBD.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        connection = DirectorRepositoryImpl.getConnection();
     }
 
     @Override
@@ -23,11 +19,11 @@ public class MovieRepositoryImpl implements MovieRepository {
                 statement.setInt(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        movie.setId(resultSet.getInt(1));
-                        movie.setTitle(resultSet.getString(2));
-                        movie.setGenre(resultSet.getString(3));
-                        movie.setRelease(resultSet.getDate(4));
-                        movie.setDirector(resultSet.getInt(5));
+                        movie.setId(resultSet.getInt("id"));
+                        movie.setTitle(resultSet.getString("title"));
+                        movie.setGenre(resultSet.getString("genre"));
+                        movie.setRelease(resultSet.getDate("release"));
+                        movie.setDirector(resultSet.getInt("director"));
                     } else {
                         throw new NoSuchElementException("Запись с указанным id не найдена");
                     }
@@ -82,11 +78,11 @@ public class MovieRepositoryImpl implements MovieRepository {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Movie mov = new Movie();
-                mov.setId(resultSet.getInt(1));
-                mov.setTitle(resultSet.getString(2));
-                mov.setGenre(resultSet.getString(3));
-                mov.setRelease(resultSet.getDate(4));
-                mov.setDirector(resultSet.getInt(5));
+                mov.setId(resultSet.getInt("id"));
+                mov.setTitle(resultSet.getString("title"));
+                mov.setGenre(resultSet.getString("genre"));
+                mov.setRelease(resultSet.getDate("release"));
+                mov.setDirector(resultSet.getInt("director"));
                 genspisok.add(mov);
             }
         } catch (SQLException e) {

@@ -1,15 +1,19 @@
-import java.io.FileNotFoundException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
-    private Connection connection;
+    private static Connection connection;
+
+    public static Connection getConnection() {
+        return connection;
+    }
 
     public DirectorRepositoryImpl() {
         try {
-            this.connection = ConnectBD.getConnection();
+            connection = ConnectBD.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -24,11 +28,11 @@ public class DirectorRepositoryImpl implements DirectorRepository {
                 statement.setInt(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        gendir.setId(resultSet.getInt(1));
-                        gendir.setFirstName(resultSet.getString(2));
-                        gendir.setLastName(resultSet.getString(3));
-                        gendir.setBirthdate(resultSet.getDate(4));
-                        gendir.setCountry(resultSet.getString(5));
+                        gendir.setId(resultSet.getInt("id"));
+                        gendir.setFirstName(resultSet.getString("first_name"));
+                        gendir.setLastName(resultSet.getString("last_name"));
+                        gendir.setBirthdate(resultSet.getDate("birth_date"));
+                        gendir.setCountry(resultSet.getString("country"));
                     } else {
                         throw new NoSuchElementException("Запись с указанным id не найдена");
                     }
@@ -91,11 +95,11 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Director dir = new Director();
-                    dir.setId(resultSet.getInt(1));
-                    dir.setFirstName(resultSet.getString(2));
-                    dir.setLastName(resultSet.getString(3));
-                    dir.setBirthdate(resultSet.getDate(4));
-                    dir.setCountry(resultSet.getString(5));
+                    dir.setId(resultSet.getInt("id"));
+                    dir.setFirstName(resultSet.getString("first_name"));
+                    dir.setLastName(resultSet.getString("last_name"));
+                    dir.setBirthdate(resultSet.getDate("birth_date"));
+                    dir.setCountry(resultSet.getString("country"));
                     listDirectors.add(dir);
                 }
             } catch (SQLException e) {
@@ -107,14 +111,14 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         if (listDirectors.size() > 0) {
             return listDirectors;
         } else {
+            System.out.println("Empty list");
             try {
-                throw new FileNotFoundException();
-            } catch (FileNotFoundException e) {
-                System.out.println("Empty list");
-                throw new RuntimeException(e);
+                throw new RuntimeException();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
             }
+
         }
-
-
+        return listDirectors;
     }
 }
