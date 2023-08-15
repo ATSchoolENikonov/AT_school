@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class RestAssuredTest {
+public class RestAssuredTestPast {
     RequestSpecification req = given().baseUri("http://httpbin.org/");
 
     @Test

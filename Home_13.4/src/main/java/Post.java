@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Post {
     private int id;
     private String title;
@@ -9,30 +11,6 @@ public class Post {
         this.userId = userId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Object getUserId() {
-        return userId;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setUserId(Object userId) {
-        this.userId = userId;
-    }
-
     @Override
     public String toString() {
         return "Post{" +
@@ -40,5 +18,18 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", userId=" + userId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return id == post.id && Objects.equals(title, post.title) && Objects.equals(userId, post.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, userId);
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Token {
     private String tokenValue;
 
@@ -9,14 +11,24 @@ public class Token {
         return tokenValue;
     }
 
-    public void setTokenValue(String tokenValue) {
-        this.tokenValue = tokenValue;
-    }
 
     @Override
     public String toString() {
         return "Token{" +
                 "tokenValue='" + tokenValue + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return Objects.equals(tokenValue, token.tokenValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tokenValue);
     }
 }
