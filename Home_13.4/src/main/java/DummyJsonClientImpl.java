@@ -42,11 +42,10 @@ public class DummyJsonClientImpl implements DummyJsonClient {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost post = new HttpPost("https://dummyjson.com/auth/login");
             post.addHeader("Content-Type", "application/json");
-            String jsonBody = "{"
-                    + "\"username\": " + "\"" + u.getLogin() + "\"" + ","
-                    + "\"password\": " + "\"" + u.getPassword() + "\""
-                    + "}";
-            post.setEntity(new StringEntity(jsonBody));
+            JSONObject jsonObject = new JSONObject();
+            jsonObject = jsonObject.put("username", u.getLogin());
+            jsonObject = jsonObject.put("password", u.getPassword());
+            post.setEntity(new StringEntity(jsonObject.toString()));
             CloseableHttpResponse resp = httpClient.execute(post);
             HttpEntity respEnt = resp.getEntity();
             trueResponse.setStatusCode(resp.getCode());
@@ -59,25 +58,26 @@ public class DummyJsonClientImpl implements DummyJsonClient {
     }
 
     @Override
-    public List<Response<Post>> getPosts(User u, Token token) {
-        List<Response<Post>> trueResponse = new ArrayList<>();
+    public Response<List<Post>> getPosts(User u, Token token) {
+        Response<List<Post>> trueResponse = new Response<>();
+        List<Post> postList = new ArrayList<>();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             StringBuilder str = new StringBuilder();
             str.append("https://dummyjson.com/posts/user/");
             str.append(u.getId());
             HttpGet get = new HttpGet(str.toString());
             get.addHeader("Content-Type", "application/json");
-            get.addHeader("Authorization", getToken(login(getDataUser(getUser(id)))));
+            get.addHeader("Authorization", token);
             CloseableHttpResponse resp = httpClient.execute(get);
+            trueResponse.setStatusCode(resp.getCode());
             HttpEntity respEnt = resp.getEntity();
             JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
             JSONArray jsonArray = result.getJSONArray("posts");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Response<Post> postResponse = new Response<>();
-                postResponse.setStatusCode(resp.getCode());
-                postResponse.setJson(new Post(jsonObject.getInt("id"), jsonObject.getString("title"), jsonObject.getInt("userId")));
-                trueResponse.add(postResponse);
+                Post postResponse = new Post(jsonObject.getInt("id"), jsonObject.getString("title"), jsonObject.getInt("userId"));
+                postList.add(postResponse);
+                trueResponse.setJson(postList);
             }
 
         } catch (IOException | JSONException | ParseException e) {

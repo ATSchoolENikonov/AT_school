@@ -8,5 +8,5 @@ public interface DummyJsonClient {
     Response<Token> login(User u);
 
     // dummyjson.com/auth/posts/{user.id}
-    List<Response<Post>> getPosts(User u, Token token);
+   Response<List<Post>> getPosts(User u, Token token);
 }

@@ -24,8 +24,8 @@ public class ApacheTest {
     }
     @Test
     void checkGetPost() {
-        List<Response<Post>> expected = setUp.getExpectedPost();
-        List<Response<Post>> actual=impl.getPosts(user,token);
+        Response<List<Post>> expected = setUp.getExpectedPost();
+        Response<List<Post>> actual=impl.getPosts(user,token);
         Assertions.assertEquals(expected,actual);
     }
 }
