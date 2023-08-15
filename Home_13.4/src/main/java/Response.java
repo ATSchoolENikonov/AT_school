@@ -2,13 +2,14 @@ import org.json.JSONObject;
 
 public class Response<T> {
     private int statusCode;
-    public JSONObject json;
+    public T json;
 
-    public JSONObject getJson() {
+    public T getJson() {
         return json;
     }
 
-    public void setJson(JSONObject json) {
+
+    public void setJson(T json) {
         this.json = json;
     }
 

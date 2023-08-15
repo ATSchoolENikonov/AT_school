@@ -23,6 +23,12 @@ public class User {
         return login;
     }
 
+    public User(long id, String login, String password) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+    }
+
     public String getPassword() {
         return password;
     }

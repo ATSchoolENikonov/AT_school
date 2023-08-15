@@ -1,4 +1,4 @@
-
+import java.util.List;
 
 public interface DummyJsonClient {
     // dummyjson.com/users/{id}
@@ -8,5 +8,5 @@ public interface DummyJsonClient {
     Response<Token> login(User u);
 
     // dummyjson.com/auth/posts/{user.id}
-    Response<Post> getPosts(User u, Token token);
+    List<Response<Post>> getPosts(User u, Token token);
 }

@@ -3,6 +3,24 @@ public class Post {
     private String title;
     private Object userId;
 
+    public Post(int id, String title, Object userId) {
+        this.id = id;
+        this.title = title;
+        this.userId = userId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Object getUserId() {
+        return userId;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

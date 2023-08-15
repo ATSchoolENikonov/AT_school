@@ -27,8 +27,8 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             CloseableHttpResponse resp = httpClient.execute(get);
             HttpEntity respEnt = resp.getEntity();
             trueResponse.setStatusCode(resp.getCode());
-            String result = EntityUtils.toString(respEnt);
-            trueResponse.json = (new JSONObject(result));
+            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            trueResponse.setJson(new User(result.getLong("id"), result.getString("username"), result.getString("password")));
         } catch (IOException | ParseException | JSONException e) {
             throw new RuntimeException(e);
         }
@@ -50,8 +50,8 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             CloseableHttpResponse resp = httpClient.execute(post);
             HttpEntity respEnt = resp.getEntity();
             trueResponse.setStatusCode(resp.getCode());
-            String result = EntityUtils.toString(respEnt);
-            trueResponse.json = (new JSONObject(result));
+            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            trueResponse.json = (new Token(result.getString("token")));
         } catch (IOException | JSONException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -59,8 +59,9 @@ public class DummyJsonClientImpl implements DummyJsonClient {
     }
 
     @Override
-    public Response<Post> getPosts(User u, Token token) {
-        Response<Post> trueResponse = new Response<>();
+    public List<Response<Post>> getPosts(User u, Token token) {
+        List<Response<Post>> trueResponse = new ArrayList<>();
+//        List<Post> postList = new ArrayList<>();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             StringBuilder str = new StringBuilder();
             str.append("https://dummyjson.com/posts/user/");
@@ -70,9 +71,21 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             get.addHeader("Authorization", getToken(login(getDataUser(getUser(id)))));
             CloseableHttpResponse resp = httpClient.execute(get);
             HttpEntity respEnt = resp.getEntity();
-            trueResponse.setStatusCode(resp.getCode());
-            String result = EntityUtils.toString(respEnt);
-            trueResponse.json = (new JSONObject(result));
+            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            JSONArray jsonArray = result.getJSONArray("posts");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Response<Post> postResponse= new Response<>();
+                postResponse.setStatusCode(resp.getCode());
+                postResponse.setJson(new Post(jsonObject.getInt("id"), jsonObject.getString("title"), jsonObject.getInt("userId")));
+//                customPost.setId(jsonObject.getInt("id"));
+//                customPost.setTitle(jsonObject.getString("title"));
+//                customPost.setUserId(jsonObject.getInt("userId"));
+//                postList.add(customPost);
+                trueResponse.add(postResponse);
+            }
+//            trueResponse.json = (new Post(result.getInt("id"),result.getString("title"),result.getInt("userId")));
+//            postList.add(trueResponse.json);
         } catch (IOException | JSONException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -80,51 +93,39 @@ public class DummyJsonClientImpl implements DummyJsonClient {
     }
 
     public User getDataUser(Response<User> resp) {
-        User customUser = new User();
-        try {
-            customUser.setId(resp.json.getLong("id"));
-            customUser.setLogin(resp.json.getString("username"));
-            customUser.setPassword(resp.json.getString("password"));
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        return customUser;
+        return new User(resp.json.getId(), resp.json.getLogin(), resp.json.getPassword());
     }
 
     public Token getToken(Response<Token> resp) {
-        Token tokenCredit=new Token();
-        try {
-            tokenCredit.setTokenValue(resp.json.getString("token"));
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        return tokenCredit;
+        return new Token(resp.json.getTokenValue());
     }
 
-    public List<Post> getPost(Response<Post> resp) {
-        List<Post> postList = new ArrayList<>();
-        Post customPostOne = new Post();
-        try {
-            JSONArray jsonArray = resp.json.getJSONArray("posts");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                Post customPost = new Post();
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                customPost.setId(jsonObject.getInt("id"));
-                customPost.setTitle(jsonObject.getString("title"));
-                customPost.setUserId(jsonObject.getInt("userId"));
-                postList.add(customPost);
-            }
-
-        } catch (JSONException e) {
-            try {
-                customPostOne.setId(resp.json.getInt("id"));
-                customPostOne.setTitle(resp.json.getString("title"));
-                customPostOne.setUserId(resp.json.getInt("userId"));
-                postList.add(customPostOne);
-            } catch (JSONException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
-        return postList;
-    }
+//    public List<Post> getPost(List<Response<Post>> resp) {
+//
+//        for (int i = 0; i < resp.size(); i++) {
+//
+//        }
+////        try {
+////            JSONArray jsonArray = resp.json.getJSONArray("posts");
+////            for (int i = 0; i < jsonArray.length(); i++) {
+////                Post customPost = new Post();
+////                JSONObject jsonObject = jsonArray.getJSONObject(i);
+////                customPost.setId(jsonObject.getInt("id"));
+////                customPost.setTitle(jsonObject.getString("title"));
+////                customPost.setUserId(jsonObject.getInt("userId"));
+////                postList.add(customPost);
+////            }
+////
+////        } catch (JSONException e) {
+////            try {
+////                customPostOne.setId(resp.json.getInt("id"));
+////                customPostOne.setTitle(resp.json.getString("title"));
+////                customPostOne.setUserId(resp.json.getInt("userId"));
+////                postList.add(customPostOne);
+////            } catch (JSONException ex) {
+////                throw new RuntimeException(ex);
+////            }
+////        }
+//        return postList;
+//    }
 }
