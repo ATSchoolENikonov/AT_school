@@ -3,14 +3,13 @@
 public class Launch {
     public static void main(String[] args) {
         DummyJsonClientImpl impl = new DummyJsonClientImpl();
-        User user = new User();
-        Token token = new Token();
-        Post post = new Post();
-        Response response = impl.getUser(DummyJsonClientImpl.id);
+        Response<User> response = impl.getUser(DummyJsonClientImpl.id);
+        User user=impl.getDataUser(response);
+        Token token=impl.getToken(impl.login(user));
         System.out.println(response);
-        System.out.println(impl.login(user.getDataUser(response)));
-        System.out.println(impl.getPosts(user.getDataUser(response), token));
-        Response postResp = impl.getPosts(user.getDataUser(response), token);
-        System.out.println(post.getPost(postResp));
+        System.out.println(impl.login(user));
+        System.out.println(impl.getPosts(user, token));
+        Response<Post> postResp = impl.getPosts(user, token);
+        System.out.println(impl.getPost(postResp));
     }
 }

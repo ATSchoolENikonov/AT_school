@@ -1,14 +1,7 @@
-import org.json.JSONException;
-
 public class Token {
+    private String tokenValue;
 
-    public String getToken(Response resp){
-        String tokenCredit;
-        try {
-            tokenCredit =resp.json.getString("token");
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        return tokenCredit;
+    public void setTokenValue(String tokenValue) {
+        this.tokenValue = tokenValue;
     }
 }

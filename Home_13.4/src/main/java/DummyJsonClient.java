@@ -2,11 +2,11 @@
 
 public interface DummyJsonClient {
     // dummyjson.com/users/{id}
-    Response getUser(int id);
+    Response<User> getUser(int id);
 
     // dummyjson.com/auth/login/
-    Response login(User u);
+    Response<Token> login(User u);
 
     // dummyjson.com/auth/posts/{user.id}
-    Response getPosts(User u, Token token);
+    Response<Post> getPosts(User u, Token token);
 }

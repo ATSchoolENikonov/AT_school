@@ -1,8 +1,18 @@
-import org.json.JSONException;
-
 public class User {
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     private long id;
@@ -15,18 +25,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public User getDataUser(Response resp) {
-        User customUser = new User();
-        try {
-            customUser.id =resp.json.getLong("id");
-            customUser.login = resp.json.getString("username");
-            customUser.password = resp.json.getString("password");
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        return customUser;
     }
 
 

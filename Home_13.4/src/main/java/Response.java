@@ -1,8 +1,6 @@
 import org.json.JSONObject;
 
-import java.util.Objects;
-
-public class Response {
+public class Response<T> {
     private int statusCode;
     public JSONObject json;
 
@@ -31,16 +29,4 @@ public class Response {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Response response = (Response) o;
-        return statusCode == response.statusCode && Objects.equals(json, response.json);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(statusCode, json);
-    }
 }
