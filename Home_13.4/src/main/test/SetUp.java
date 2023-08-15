@@ -1,6 +1,11 @@
 import java.util.List;
 
 public class SetUp {
+    DummyJsonClientImpl impl = new DummyJsonClientImpl();
+    Response<User> response = impl.getUser(DummyJsonClientImpl.id);
+    User user=impl.getDataUser(response);
+    Token token=impl.getToken(impl.login(user));
+
 
     public Response<User> getExpectedUser() {
         Response<User> response = new Response<>();

@@ -19,15 +19,15 @@ import java.util.List;
 public class DummyJsonClientImpl implements DummyJsonClient {
     public static final int id = 1;
 
+
+
     @Override
     public Response<User> getUser(int id) {
         Response<User> trueResponse = new Response<>();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet get = new HttpGet("https://dummyjson.com/users/" + id);
-            CloseableHttpResponse resp = httpClient.execute(get);
-            HttpEntity respEnt = resp.getEntity();
-            trueResponse.setStatusCode(resp.getCode());
-            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            JSONObject result=takeResponse(httpClient.execute(get));
+            trueResponse.setStatusCode(httpClient.execute(get).getCode());
             trueResponse.setJson(new User(result.getLong("id"), result.getString("username"), result.getString("password")));
         } catch (IOException | ParseException | JSONException e) {
             throw new RuntimeException(e);
@@ -46,10 +46,8 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             jsonObject = jsonObject.put("username", u.getLogin());
             jsonObject = jsonObject.put("password", u.getPassword());
             post.setEntity(new StringEntity(jsonObject.toString()));
-            CloseableHttpResponse resp = httpClient.execute(post);
-            HttpEntity respEnt = resp.getEntity();
-            trueResponse.setStatusCode(resp.getCode());
-            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            JSONObject result=takeResponse(httpClient.execute(post));
+            trueResponse.setStatusCode(httpClient.execute(post).getCode());
             trueResponse.json = (new Token(result.getString("token")));
         } catch (IOException | JSONException | ParseException e) {
             throw new RuntimeException(e);
@@ -68,10 +66,8 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             HttpGet get = new HttpGet(str.toString());
             get.addHeader("Content-Type", "application/json");
             get.addHeader("Authorization", token);
-            CloseableHttpResponse resp = httpClient.execute(get);
-            trueResponse.setStatusCode(resp.getCode());
-            HttpEntity respEnt = resp.getEntity();
-            JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+            JSONObject result=takeResponse(httpClient.execute(get));
+            trueResponse.setStatusCode(httpClient.execute(get).getCode());
             JSONArray jsonArray = result.getJSONArray("posts");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -92,6 +88,14 @@ public class DummyJsonClientImpl implements DummyJsonClient {
 
     public Token getToken(Response<Token> resp) {
         return new Token(resp.json.getTokenValue());
+    }
+
+    public JSONObject takeResponse(CloseableHttpResponse response) throws IOException, ParseException, JSONException {
+        CloseableHttpResponse resp = response;
+        HttpEntity respEnt = resp.getEntity();
+        JSONObject result = new JSONObject(EntityUtils.toString(respEnt));
+        resp.close();
+        return result;
     }
 
 }
