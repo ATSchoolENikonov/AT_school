@@ -8,6 +8,8 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +20,7 @@ import java.util.List;
 
 
 public class DummyJsonClientImpl implements DummyJsonClient {
+    private static final Logger logger= LogManager.getLogger(DummyJsonClientImpl.class);
     public static final int id = 1;
 
 
@@ -30,6 +33,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             trueResponse.setStatusCode(httpClient.execute(get).getCode());
             trueResponse.setJson(new User(result.getLong("id"), result.getString("username"), result.getString("password")));
         } catch (IOException | ParseException | JSONException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
         return trueResponse;
@@ -50,6 +54,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             trueResponse.setStatusCode(httpClient.execute(post).getCode());
             trueResponse.json = (new Token(result.getString("token")));
         } catch (IOException | JSONException | ParseException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
         return trueResponse;
@@ -77,6 +82,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
             }
 
         } catch (IOException | JSONException | ParseException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
         return trueResponse;
