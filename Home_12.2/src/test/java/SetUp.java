@@ -1,9 +1,13 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Date;
 import java.time.LocalDate;
 
 public class SetUp {
     private DirectorRepositoryImpl impl = new DirectorRepositoryImpl();
     private MovieRepositoryImpl movieRepository = new MovieRepositoryImpl();
+    private static final Logger logger= LogManager.getLogger(SetUp.class);
 
     public DirectorRepositoryImpl getImpl() {
         return impl;
@@ -28,21 +32,25 @@ public class SetUp {
     }
 
     public Director getExpected(int id, String first, String last, String date, String country) {
+        logger.debug("Creating expected result....");
         Director director = new Director();
         director.setId(id);
         director.setFirstName(first);
         director.setLastName(last);
         director.setBirthdate(Date.valueOf(LocalDate.parse(date)));
         director.setCountry(country);
+        logger.debug("Created expected : {}",director);
         return director;
     }
     public Movie getExpected(int id, String title, String genre, String release, int director) {
+        logger.debug("Creating expected result....");
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
         movie.setGenre(genre);
         movie.setRelease(Date.valueOf(LocalDate.parse(release)));
         movie.setDirector(director);
+        logger.debug("Created expected : {}",movie);
         return movie;
     }
 

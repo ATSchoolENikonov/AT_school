@@ -1,9 +1,13 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class MovieRepositoryImpl implements MovieRepository {
+    private static final Logger logger= LogManager.getLogger(MovieRepositoryImpl.class);
     private Connection connection;
 
     public MovieRepositoryImpl() {
@@ -29,6 +33,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                     }
                 }
             } catch (SQLException e) {
+                logger.error(e.getMessage(),e);
                 throw new RuntimeException(e);
             }
         }
@@ -48,6 +53,7 @@ public class MovieRepositoryImpl implements MovieRepository {
             int count = statement.getUpdateCount();
             System.out.println("Кол-во измененных строк = " + count);
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }
@@ -65,6 +71,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 System.out.println("Запись с указанным id не найдена");
             }
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }
@@ -86,6 +93,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                 genspisok.add(mov);
             }
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
         return genspisok;

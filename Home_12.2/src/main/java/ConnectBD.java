@@ -1,15 +1,21 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 
 public class ConnectBD {
+    private static final Logger logger= LogManager.getLogger(ConnectBD.class);
 
     public static Connection getConnection() throws RuntimeException, SQLException {
         String jdbcURL = "jdbc:h2:mem:test";
         Connection connection = DriverManager.getConnection(jdbcURL);
         System.out.println("Connected to the DB " + connection);
+        logger.debug("Getting connection...");
         return connection;
     }
 
     public static void createTableDirectors() {
+        logger.debug("Creating table with Directors...");
         String createTables = "CREATE TABLE DIRECTORS " +
                 "(id INTEGER not NULL, " +
                 " first_name VARCHAR(255), " +
@@ -28,13 +34,16 @@ public class ConnectBD {
                 System.out.println("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
+            logger.info("Successfully created");
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
 
     }
 
     public static void createTableMovies() {
+        logger.debug("Creating table with Movies...");
         String createTables = "CREATE TABLE MOVIES " +
                 "(id INTEGER not NULL, " +
                 " title VARCHAR(255), " +
@@ -53,7 +62,9 @@ public class ConnectBD {
                 System.out.println("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
+            logger.info("Successfully created");
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
 

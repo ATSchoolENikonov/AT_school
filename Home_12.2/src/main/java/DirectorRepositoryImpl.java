@@ -1,10 +1,15 @@
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DirectorRepositoryImpl implements DirectorRepository {
+    private static final Logger logger= LogManager.getLogger(DirectorRepositoryImpl.class);
+
     private static Connection connection;
 
     public static Connection getConnection() {
@@ -15,6 +20,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
         try {
             connection = ConnectBD.getConnection();
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }
@@ -34,11 +40,13 @@ public class DirectorRepositoryImpl implements DirectorRepository {
                         gendir.setBirthdate(resultSet.getDate("birth_date"));
                         gendir.setCountry(resultSet.getString("country"));
                     } else {
-                        throw new NoSuchElementException("Запись с указанным id не найдена");
+                        logger.error("Запись с указанным id не найдена");
+                        throw new NoSuchElementException();
                     }
 
                 }
             } catch (SQLException e) {
+                logger.error(e.getMessage(),e);
                 throw new RuntimeException(e);
             }
 
@@ -59,6 +67,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             int count = statement.getUpdateCount();
             System.out.println("Кол-во измененных строк = " + count);
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }
@@ -73,9 +82,10 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             if (count > 0) {
                 System.out.println("Кол-во удаленных строк = " + count);
             } else {
-                System.out.println("Запись с указанным id не найдена");
+                logger.error("Запись с указанным id не найдена");
             }
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }
@@ -103,19 +113,21 @@ public class DirectorRepositoryImpl implements DirectorRepository {
                     listDirectors.add(dir);
                 }
             } catch (SQLException e) {
+                logger.error(e.getMessage(),e);
                 throw new RuntimeException(e);
             }
         } catch (SQLException e) {
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
         if (listDirectors.size() > 0) {
             return listDirectors;
         } else {
-            System.out.println("Empty list");
+            logger.error("Empty list");
             try {
                 throw new RuntimeException();
             } catch (RuntimeException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
             }
 
         }
