@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class SetUp {
-    private static final Logger logger= LogManager.getLogger(SetUp.class);
+    private static final Logger logger= LogManager.getLogger(SetUpBD.class);
     DummyJsonClientImpl impl = new DummyJsonClientImpl();
     Response<User> response = impl.getUser(DummyJsonClientImpl.id);
     User user=impl.getDataUser(response);

@@ -5,86 +5,86 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class MovieTest {
+public class DirectorsTest {
     private static final Logger logger= LogManager.getLogger(DirectorsTest.class);
-    SetUp setUp = new SetUp();
-    DirectorRepositoryImpl impl = setUp.getImpl();
-    MovieRepositoryImpl movieImpl=setUp.getMovieRepository();
+    SetUpBD setUpBD =new SetUpBD();
+    DirectorRepositoryImpl impl = setUpBD.getImpl();
 
 
     @BeforeAll
     public static void createBD() {
-        logger.info("BD Movie TEST BEGUN");
+        logger.info("BD Director TEST BEGUN");
         ConnectBD.createTableDirectors();
         ConnectBD.createTableMovies();
     }
+
     @BeforeEach
     void saveData() {
-        setUp.safeDataMovie();
+        setUpBD.safeDataDirector();
         logger.debug("Сохранено");
     }
 
+
     @Test
-    @Epic(value = "Movie")
+    @Epic(value = "Director")
     @Feature(value = "Получение")
     @Story(value = "Однаштуковая")
     @DisplayName("ПОЛУЧИТЬ ID")
     void getByID() {
         logger.debug("----Step start here----");
-        Movie movie = setUp.getMovie();
-        Movie movieAct=movieImpl.get(2);
-        logger.debug("Test {} {}",movieAct,movie);
-        Assertions.assertEquals(movie, movieAct);
+        Director dir = setUpBD.getDir();
+        Director dirAct = impl.get(4);
+        logger.debug("Test {} {}",dirAct,dir);
+        Assertions.assertEquals(dir, dirAct);
     }
 
     @Test
-    @Epic(value = "Movie")
+    @Epic(value = "Director")
     @Feature(value = "Действие")
     @Story(value = "Сохранение")
     @DisplayName("Провеверить сохранялку")
     void checkSave() {
         logger.debug("----Step start here----");
-        Movie movie = setUp.getMovie();
-        Movie movieAct=movieImpl.get(movie.getId());
-        logger.debug("Test {} {}",movieAct,movie);
-        Assertions.assertEquals(movie, movieAct);
+        Director dir = setUpBD.getDir();
+        Director dirAct = impl.get(dir.getId());
+        logger.debug("Test {} {}",dirAct,dir);
+        Assertions.assertEquals(dir, dirAct);
     }
 
+
     @Test
-    @Epic(value = "Movie")
+    @Epic(value = "Director")
     @Feature(value = "Действие")
     @Story(value = "Удаление")
     @DisplayName("Провеверить удалялку")
     void checkDelete() {
         logger.debug("----Step start here----");
-        Movie movie = setUp.getMovie();
-        int idMovieAct= movie.getId();
-        logger.debug("Test {}",movie);
-        movieImpl.delete(movie);
-        Assertions.assertThrows(NoSuchElementException.class, () ->movieImpl.get(idMovieAct));
+        Director dir = setUpBD.getDir();
+        int dirActId = dir.getId();
+        logger.debug("Test {} ",dir);
+        setUpBD.getImpl().delete(dir);
+        Assertions.assertThrows(NoSuchElementException.class, () -> impl.get(dirActId));
     }
 
     @Test
-    @Epic(value = "Movie")
+    @Epic(value = "Director")
     @DisplayName("Провеверить список")
     @Story(value = "Получение")
     @Feature(value = "Много за раз")
     void checkList() {
         logger.debug("----Step start here----");
-        List<Movie> movList = new ArrayList<>();
-        movList.add(movieImpl.get(1));
-        movList.add(movieImpl.get(13));
-        List<Movie> movListAct = movieImpl.get(impl.get(2));
-        logger.debug("Test {} {}",movListAct,movList);
-        Assertions.assertTrue(movList.containsAll(movListAct));
+        List<String> genraa = List.of("Horror", "Fantasy", "Fart");
+        List<Director> expList = List.of(impl.get(2));
+        logger.debug("Test {} {}",genraa,expList);
+        Assertions.assertTrue(expList.containsAll(impl.get(genraa)));
     }
+
     @AfterEach
     void clearData() {
-        setUp.deleteDataMovie();
+        setUpBD.deleteDataDirector();
         System.out.println("Очистка");
     }
 }

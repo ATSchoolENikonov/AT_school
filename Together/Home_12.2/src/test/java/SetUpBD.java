@@ -4,10 +4,10 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class SetUp {
+public class SetUpBD {
     private DirectorRepositoryImpl impl = new DirectorRepositoryImpl();
     private MovieRepositoryImpl movieRepository = new MovieRepositoryImpl();
-    private static final Logger logger= LogManager.getLogger(SetUp.class);
+    private static final Logger logger= LogManager.getLogger(SetUpBD.class);
 
     public DirectorRepositoryImpl getImpl() {
         return impl;
