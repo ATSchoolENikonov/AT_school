@@ -11,4 +11,11 @@ public class LoginPage {
     SelenideElement logButton = $x("//input[@id='login-button']");
     SelenideElement searchFieldLogin = $x("//div[@class='login_logo']");
 
+    void login(){
+        userName.val("standard_user");
+        userPassword.val("secret_sauce");
+        logButton.click();
+
+    }
+
 }
