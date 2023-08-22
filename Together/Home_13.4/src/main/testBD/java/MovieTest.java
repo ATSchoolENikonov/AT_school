@@ -18,7 +18,6 @@ public class MovieTest {
 
     @BeforeAll
     public static void createBD() {
-        logger.info("BD Movie TEST BEGUN");
         ConnectBD.createTableDirectors();
         ConnectBD.createTableMovies();
     }
@@ -34,7 +33,7 @@ public class MovieTest {
     @Story(value = "Однаштуковая")
     @DisplayName("ПОЛУЧИТЬ ID")
     void getByID() {
-        logger.debug("----Step start here----");
+        logger.debug("Начало теста по полчению записи по айди");
         Movie movie = setUpBD.getMovie();
         Movie movieAct=movieImpl.get(2);
         logger.debug("Test {} {}",movieAct,movie);
@@ -47,7 +46,7 @@ public class MovieTest {
     @Story(value = "Сохранение")
     @DisplayName("Провеверить сохранялку")
     void checkSave() {
-        logger.debug("----Step start here----");
+        logger.debug("Начало теста по сохранению");
         Movie movie = setUpBD.getMovie();
         Movie movieAct=movieImpl.get(movie.getId());
         logger.debug("Test {} {}",movieAct,movie);
@@ -60,7 +59,7 @@ public class MovieTest {
     @Story(value = "Удаление")
     @DisplayName("Провеверить удалялку")
     void checkDelete() {
-        logger.debug("----Step start here----");
+        logger.debug("Начало теста по удалению");
         Movie movie = setUpBD.getMovie();
         int idMovieAct= movie.getId();
         logger.debug("Test {}",movie);
@@ -74,7 +73,7 @@ public class MovieTest {
     @Story(value = "Получение")
     @Feature(value = "Много за раз")
     void checkList() {
-        logger.debug("----Step start here----");
+        logger.debug("Начало теста по проверке листа");
         List<Movie> movList = new ArrayList<>();
         movList.add(movieImpl.get(1));
         movList.add(movieImpl.get(13));

@@ -27,6 +27,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 
     @Override
     public Director get(int id) {
+        logger.info("Начало поиска директора по айди");
         String sqlSelect = "Select * from DIRECTORS where id = ?";
         Director gendir = new Director();
         {
@@ -51,11 +52,13 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             }
 
         }
+        logger.info("Поиск директора завершен");
         return gendir;
     }
 
     @Override
     public void save(Director director) {
+        logger.info("Начало добавления записи в таблицу");
         String sqlInsert = "INSERT into directors values (?,?,?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlInsert)) {
             statement.setInt(1, director.getId());
@@ -70,10 +73,12 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
+        logger.info("Добавление записи в таблицу завершено");
     }
 
     @Override
     public void delete(Director director) {
+        logger.info("Начало удаления записи из таблицы");
         String sqlDelete = "delete from directors where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlDelete)) {
             statement.setInt(1, director.getId());
@@ -88,10 +93,12 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
+        logger.info("Удаление записи из таблицы завершено");
     }
 
     @Override
     public List<Director> get(List<String> genres) {
+        logger.info("Начало поиска списка директоров");
         int count = 1;
         List<Director> listDirectors = new ArrayList<>();
         String str = "?" +
@@ -131,6 +138,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             }
 
         }
+        logger.info("Поиск списка директоров завершен");
         return listDirectors;
     }
 }

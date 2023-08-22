@@ -104,9 +104,10 @@
     <build>
         <testResources>
             <testResource>
-                <directory>src/test/resources</directory>
+                <directory>Home_13.4/src/main/test</directory>
             </testResource>
         </testResources>
+        <testSourceDirectory>Home_13.4/src/main</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

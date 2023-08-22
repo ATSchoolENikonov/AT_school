@@ -16,6 +16,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     @Override
     public Movie get(int id) {
+        logger.info("Начало поиска фильма по айди");
         String sqlSelect = "Select * from MOVIES where id = ?";
         Movie movie = new Movie();
         {
@@ -37,11 +38,13 @@ public class MovieRepositoryImpl implements MovieRepository {
                 throw new RuntimeException(e);
             }
         }
+        logger.info("Поиск фильма завершен");
         return movie;
     }
 
     @Override
     public void save(Movie movie) {
+        logger.info("Начало добавления записи в таблицу");
         String sqlInsert = "INSERT into MOVIES values (?,?,?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlInsert)) {
             statement.setInt(1, movie.getId());
@@ -56,10 +59,12 @@ public class MovieRepositoryImpl implements MovieRepository {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
+        logger.info("Добавление в таблицу завершено");
     }
 
     @Override
     public void delete(Movie movie) {
+        logger.info("Начало удаления записи из таблицы");
         String sqlDelete = "delete from MOVIES where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlDelete)) {
             statement.setInt(1, movie.getId());
@@ -74,10 +79,12 @@ public class MovieRepositoryImpl implements MovieRepository {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
+        logger.info("Удаление записи из таблицы завершено");
     }
 
     @Override
     public List<Movie> get(Director d) {
+        logger.info("Начало поиска списка фильмов");
         String getList = "Select * from movies where director = ?";
         List<Movie> genspisok = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(getList)) {
@@ -96,6 +103,7 @@ public class MovieRepositoryImpl implements MovieRepository {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
+        logger.info("Поиск спсика фильмов завершен");
         return genspisok;
     }
 
