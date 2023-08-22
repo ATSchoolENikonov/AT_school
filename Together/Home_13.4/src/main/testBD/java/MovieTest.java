@@ -18,6 +18,7 @@ public class MovieTest {
 
     @BeforeAll
     public static void createBD() {
+        logger.info("BD Movie TEST BEGUN");
         ConnectBD.createTableDirectors();
         ConnectBD.createTableMovies();
     }

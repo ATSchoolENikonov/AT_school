@@ -6,9 +6,9 @@ import java.util.List;
 public class SetUp {
     private static final Logger logger= LogManager.getLogger(SetUp.class);
     DummyJsonClientImpl impl = new DummyJsonClientImpl();
-    Response<User> response = impl.getUser(DummyJsonClientImpl.id);
-    User user=impl.getDataUser(response);
-    Token token=impl.getToken(impl.login(user));
+//    Response<User> response = impl.getUser(DummyJsonClientImpl.id);
+//    User user=impl.getDataUser(response);
+//    Token token=impl.getToken(impl.login(user));
 
 
     public Response<User> getExpectedUser() {

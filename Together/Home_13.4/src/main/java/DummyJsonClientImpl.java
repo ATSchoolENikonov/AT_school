@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
@@ -25,6 +26,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
 
 
     @Override
+    @Step("Отправка запроса GET для получения  пользователя")
     public Response<User> getUser(int id) {
         Response<User> trueResponse = new Response<>();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -41,6 +43,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
 
 
     @Override
+    @Step("Отправка запроса POST для получения токена")
     public Response<Token> login(User u) {
         Response<Token> trueResponse = new Response<>();
         HttpPost post = new HttpPost("https://dummyjson.com/auth/login");
@@ -61,6 +64,7 @@ public class DummyJsonClientImpl implements DummyJsonClient {
     }
 
     @Override
+    @Step("Отправка запроса GET с параметрами для получени Постов")
     public Response<List<Post>> getPosts(User u, Token token) {
         Response<List<Post>> trueResponse = new Response<>();
         List<Post> postList = new ArrayList<>();

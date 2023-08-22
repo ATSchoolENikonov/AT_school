@@ -1,6 +1,5 @@
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +24,6 @@ public class ApacheTest {
     @Story(value = "User Data")
     @DisplayName("Проверка получения данных пользователя")
     @Test
-    @Step("Проверка получения пользователя")
     void checkGetUser() {
         logger.debug("-----Step starts here-----");
         Response<User> expected = setUp.getExpectedUser();
@@ -39,10 +37,11 @@ public class ApacheTest {
     @Story(value = "User token")
     @DisplayName("Проверка получения токена")
     @Test
-    @Step("Проверка получения токена при логине")
     void checkGetToken() {
         logger.debug("-----Step starts here-----");
-        Response<Token> actual = setUp.impl.login(setUp.user);
+        Response<User> response = setUp.impl.getUser(DummyJsonClientImpl.id);
+        User user=setUp.impl.getDataUser(response);
+        Response<Token> actual = setUp.impl.login(user);
         logger.warn("Test {} ",actual);
         Assertions.assertNotNull(actual);
     }
@@ -52,11 +51,13 @@ public class ApacheTest {
     @Story(value = "User Post")
     @DisplayName("Проверка получения поста")
     @Test
-    @Step("Проверка получения постов конкретного пользователя")
     void checkGetPost() {
         logger.debug("-----Step starts here-----");
+        Response<User> response = setUp.impl.getUser(DummyJsonClientImpl.id);
+        User user=setUp.impl.getDataUser(response);
         Response<List<Post>> expected = setUp.getExpectedPost();
-        Response<List<Post>> actual = setUp.impl.getPosts(setUp.user, setUp.token);
+        Token token=setUp.impl.getToken(setUp.impl.login(user));
+        Response<List<Post>> actual = setUp.impl.getPosts(user, token);
         logger.warn("Test {} {}",expected,actual);
         Assertions.assertEquals(expected, actual);
     }
