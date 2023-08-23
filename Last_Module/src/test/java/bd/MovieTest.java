@@ -87,6 +87,6 @@ public class MovieTest {
     @AfterEach
     void clearData() {
         setUpBD.deleteDataMovie();
-        System.out.println("Очистка");
+        logger.debug("Очистка");
     }
 }

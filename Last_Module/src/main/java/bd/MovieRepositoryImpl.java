@@ -59,7 +59,7 @@ public class MovieRepositoryImpl implements MovieRepository {
             statement.setInt(5, movie.getDirector());
             statement.executeUpdate();
             int count = statement.getUpdateCount();
-            System.out.println("Кол-во измененных строк = " + count);
+            logger.info("Кол-во измененных строк = " + count);
         } catch (SQLException e) {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
@@ -77,9 +77,9 @@ public class MovieRepositoryImpl implements MovieRepository {
             statement.executeUpdate();
             int count = statement.getUpdateCount();
             if (count > 0) {
-                System.out.println("Кол-во удаленных строк = " + count);
+               logger.info("Кол-во удаленных строк = " + count);
             } else {
-                System.out.println("Запись с указанным id не найдена");
+                logger.debug("Запись с указанным id не найдена");
             }
         } catch (SQLException e) {
             logger.error(e.getMessage(),e);

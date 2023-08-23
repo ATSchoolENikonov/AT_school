@@ -30,7 +30,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     @Override
     @Step("Получение записи по айди")
     public Director get(int id) {
-        logger.info("Начало поиска директора по айди");
+        logger.info("Начало поиска директора по айди {}",id);
         String sqlSelect = "Select * from DIRECTORS where id = ?";
         Director gendir = new Director();
         {
@@ -72,7 +72,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             statement.setString(5, director.getCountry());
             statement.executeUpdate();
             int count = statement.getUpdateCount();
-            System.out.println("Кол-во измененных строк = " + count);
+            logger.info("Кол-во измененных строк = " + count);
         } catch (SQLException e) {
             logger.error(e.getMessage(),e);
             throw new RuntimeException(e);
@@ -90,7 +90,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
             statement.executeUpdate();
             int count = statement.getUpdateCount();
             if (count > 0) {
-                System.out.println("Кол-во удаленных строк = " + count);
+                logger.info("Кол-во удаленных строк = " + count);
             } else {
                 logger.error("Запись с указанным id не найдена");
             }

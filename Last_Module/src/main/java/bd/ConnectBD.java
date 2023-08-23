@@ -11,8 +11,7 @@ public class ConnectBD {
     public static Connection getConnection() throws RuntimeException, SQLException {
         String jdbcURL = "jdbc:h2:mem:test";
         Connection connection = DriverManager.getConnection(jdbcURL);
-        System.out.println("Connected to the DB " + connection);
-        logger.debug("Getting connection...");
+        logger.debug("Connected to the DB " + connection);
         return connection;
     }
 
@@ -31,9 +30,9 @@ public class ConnectBD {
              ResultSet set = getConnection().getMetaData().getTables(null, null, "DIRECTORS", null)) {
             if (!set.next()) {
                 stm.executeUpdate(createTables);
-                System.out.println("Created Table");
+                logger.info("Created Table");
                 stm.executeUpdate(insertRows1);
-                System.out.println("Inserted a row");
+                logger.info("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
             logger.info("Successfully created");
@@ -59,9 +58,9 @@ public class ConnectBD {
              ResultSet set = getConnection().getMetaData().getTables(null, null, "MOVIES", null)) {
             if (!set.next()) {
                 stm.executeUpdate(createTables);
-                System.out.println("Created Table");
+                logger.info("Created Table");
                 stm.executeUpdate(insertRows1);
-                System.out.println("Inserted a row");
+                logger.info("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
             logger.info("Successfully created");
