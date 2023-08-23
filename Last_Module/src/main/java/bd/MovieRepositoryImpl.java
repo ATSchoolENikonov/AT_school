@@ -1,5 +1,6 @@
 package bd;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,6 +18,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
+    @Step("Получение записи по айди")
     public Movie get(int id) {
         logger.info("Начало поиска фильма по айди");
         String sqlSelect = "Select * from MOVIES where id = ?";
@@ -45,6 +47,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
+    @Step("Сохранение записи")
     public void save(Movie movie) {
         logger.info("Начало добавления записи в таблицу");
         String sqlInsert = "INSERT into MOVIES values (?,?,?,?,?)";
@@ -65,6 +68,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
+    @Step("Удаление записи")
     public void delete(Movie movie) {
         logger.info("Начало удаления записи из таблицы");
         String sqlDelete = "delete from MOVIES where id = ?";
@@ -85,6 +89,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
+    @Step("Получение листа фильмов")
     public List<Movie> get(Director d) {
         logger.info("Начало поиска списка фильмов");
         String getList = "Select * from movies where director = ?";

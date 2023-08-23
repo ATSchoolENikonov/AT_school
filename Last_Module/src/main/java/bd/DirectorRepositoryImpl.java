@@ -1,5 +1,6 @@
 package bd;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +28,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
+    @Step("Получение записи по айди")
     public Director get(int id) {
         logger.info("Начало поиска директора по айди");
         String sqlSelect = "Select * from DIRECTORS where id = ?";
@@ -58,6 +60,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
+    @Step("Сохранение записи")
     public void save(Director director) {
         logger.info("Начало добавления записи в таблицу");
         String sqlInsert = "INSERT into directors values (?,?,?,?,?)";
@@ -78,6 +81,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
+    @Step("Удаление записи")
     public void delete(Director director) {
         logger.info("Начало удаления записи из таблицы");
         String sqlDelete = "delete from directors where id = ?";
@@ -98,6 +102,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
+    @Step("Поиск списка директоров")
     public List<Director> get(List<String> genres) {
         logger.info("Начало поиска списка директоров");
         int count = 1;
