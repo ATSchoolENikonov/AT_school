@@ -23,7 +23,7 @@ public class RestAssuredTest {
     @Test
     @DisplayName("Проверить гет")
     public void checkGet() {
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         req.log().all()
                 .param("p1", "v1")
                 .param("p2", "v2")
@@ -39,7 +39,7 @@ public class RestAssuredTest {
     @Test
     @DisplayName("Проверить пост")
     public void checkPost() {
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         String body = "{\n" +
                 "     \"parameter\": \"value\"\n" +
                 "   }";
@@ -53,7 +53,7 @@ public class RestAssuredTest {
     @Test
     @DisplayName("Проверить аутентификацию")
     public void checkAuth(){
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         req.given().log().all()
                 .auth()
                 .basic("user", "password")
@@ -66,7 +66,7 @@ public class RestAssuredTest {
     @Test
     @DisplayName("Проверить логин по токену")
     public void checkAuthToken(){
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         req.given().log().all()
                 .auth()
                 .oauth2("wqerfafa")

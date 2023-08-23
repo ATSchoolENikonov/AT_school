@@ -20,7 +20,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     @Step("Получение записи по айди")
     public Movie get(int id) {
-        logger.info("Начало поиска фильма по айди");
+        logger.debug("Начало поиска фильма по айди");
         String sqlSelect = "Select * from MOVIES where id = ?";
         Movie movie = new Movie();
         {
@@ -49,7 +49,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     @Step("Сохранение записи")
     public void save(Movie movie) {
-        logger.info("Начало добавления записи в таблицу");
+        logger.debug("Начало добавления записи в таблицу");
         String sqlInsert = "INSERT into MOVIES values (?,?,?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlInsert)) {
             statement.setInt(1, movie.getId());
@@ -70,7 +70,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     @Step("Удаление записи")
     public void delete(Movie movie) {
-        logger.info("Начало удаления записи из таблицы");
+        logger.debug("Начало удаления записи из таблицы");
         String sqlDelete = "delete from MOVIES where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlDelete)) {
             statement.setInt(1, movie.getId());
@@ -91,7 +91,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     @Step("Получение листа фильмов")
     public List<Movie> get(Director d) {
-        logger.info("Начало поиска списка фильмов");
+        logger.debug("Начало поиска списка фильмов");
         String getList = "Select * from movies where director = ?";
         List<Movie> genspisok = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(getList)) {

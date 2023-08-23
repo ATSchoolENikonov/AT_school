@@ -30,9 +30,9 @@ public class ConnectBD {
              ResultSet set = getConnection().getMetaData().getTables(null, null, "DIRECTORS", null)) {
             if (!set.next()) {
                 stm.executeUpdate(createTables);
-                logger.info("Created Table");
+                logger.debug("Created Table");
                 stm.executeUpdate(insertRows1);
-                logger.info("Inserted a row");
+                logger.debug("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
             logger.info("Successfully created");
@@ -58,9 +58,9 @@ public class ConnectBD {
              ResultSet set = getConnection().getMetaData().getTables(null, null, "MOVIES", null)) {
             if (!set.next()) {
                 stm.executeUpdate(createTables);
-                logger.info("Created Table");
+                logger.debug("Created Table");
                 stm.executeUpdate(insertRows1);
-                logger.info("Inserted a row");
+                logger.debug("Inserted a row");
                 stm.executeUpdate(insertRows2);
             }
             logger.info("Successfully created");

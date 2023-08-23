@@ -27,10 +27,10 @@ public class ApacheTest {
     @DisplayName("Проверка получения данных пользователя")
     @Test
     void checkGetUser() {
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         Response<User> expected = setUp.getExpectedUser();
         Response<User> actual = setUp.impl.getUser(DummyJsonClientImpl.id);
-        logger.warn("Test {} {}",expected,actual);
+        logger.debug("Test {} {}",expected,actual);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -40,11 +40,11 @@ public class ApacheTest {
     @DisplayName("Проверка получения токена")
     @Test
     void checkGetToken() {
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         Response<User> response = setUp.impl.getUser(DummyJsonClientImpl.id);
         User user=setUp.impl.getDataUser(response);
         Response<Token> actual = setUp.impl.login(user);
-        logger.warn("Test {} ",actual);
+        logger.debug("Test {} ",actual);
         Assertions.assertNotNull(actual);
     }
 
@@ -54,13 +54,13 @@ public class ApacheTest {
     @DisplayName("Проверка получения поста")
     @Test
     void checkGetPost() {
-        logger.debug("-----Step starts here-----");
+        logger.info("-----Step starts here-----");
         Response<User> response = setUp.impl.getUser(DummyJsonClientImpl.id);
         User user=setUp.impl.getDataUser(response);
         Response<List<Post>> expected = setUp.getExpectedPost();
         Token token=setUp.impl.getToken(setUp.impl.login(user));
         Response<List<Post>> actual = setUp.impl.getPosts(user, token);
-        logger.warn("Test {} {}",expected,actual);
+        logger.debug("Test {} {}",expected,actual);
         Assertions.assertEquals(expected, actual);
     }
 }

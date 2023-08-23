@@ -27,7 +27,7 @@ public class MovieTest {
     @BeforeEach
     void saveData() {
         setUpBD.safeDataMovie();
-        logger.debug("Сохранено");
+        logger.info("Сохранено");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class MovieTest {
     @Story(value = "Однаштуковая")
     @DisplayName("ПОЛУЧИТЬ ID")
     void getByID() {
-        logger.debug("Начало теста по полчению записи по айди");
+        logger.info("Начало теста по полчению записи по айди");
         Movie movie = setUpBD.getMovie();
         Movie movieAct=movieImpl.get(2);
         logger.debug("Test {} {}",movieAct,movie);
@@ -49,7 +49,7 @@ public class MovieTest {
     @Story(value = "Сохранение")
     @DisplayName("Провеверить сохранялку")
     void checkSave() {
-        logger.debug("Начало теста по сохранению");
+        logger.info("Начало теста по сохранению");
         Movie movie = setUpBD.getMovie();
         Movie movieAct=movieImpl.get(movie.getId());
         logger.debug("Test {} {}",movieAct,movie);
@@ -62,7 +62,7 @@ public class MovieTest {
     @Story(value = "Удаление")
     @DisplayName("Провеверить удалялку")
     void checkDelete() {
-        logger.debug("Начало теста по удалению");
+        logger.info("Начало теста по удалению");
         Movie movie = setUpBD.getMovie();
         int idMovieAct= movie.getId();
         logger.debug("Test {}",movie);
@@ -76,7 +76,7 @@ public class MovieTest {
     @Story(value = "Получение")
     @Feature(value = "Много за раз")
     void checkList() {
-        logger.debug("Начало теста по проверке листа");
+        logger.info("Начало теста по проверке листа");
         List<Movie> movList = new ArrayList<>();
         movList.add(movieImpl.get(1));
         movList.add(movieImpl.get(13));
@@ -87,6 +87,6 @@ public class MovieTest {
     @AfterEach
     void clearData() {
         setUpBD.deleteDataMovie();
-        logger.debug("Очистка");
+        logger.info("Очистка");
     }
 }

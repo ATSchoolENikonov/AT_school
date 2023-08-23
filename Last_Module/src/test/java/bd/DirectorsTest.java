@@ -36,7 +36,7 @@ public class DirectorsTest {
     @Story(value = "Однаштуковая")
     @DisplayName("ПОЛУЧИТЬ ID")
     void getByID() {
-        logger.debug("Начало теста по полчению записи по айди");
+        logger.info("Начало теста по полчению записи по айди");
         Director dir = setUpBD.getDir();
         Director dirAct = impl.get(4);
         logger.debug("Test {} {}",dirAct,dir);
@@ -49,7 +49,7 @@ public class DirectorsTest {
     @Story(value = "Сохранение")
     @DisplayName("Провеверить сохранялку")
     void checkSave() {
-        logger.debug("Начало теста по сохранению");
+        logger.info("Начало теста по сохранению");
         Director dir = setUpBD.getDir();
         Director dirAct = impl.get(dir.getId());
         logger.debug("Test {} {}",dirAct,dir);
@@ -63,7 +63,7 @@ public class DirectorsTest {
     @Story(value = "Удаление")
     @DisplayName("Провеверить удалялку")
     void checkDelete() {
-        logger.debug("Начало теста по удалению");
+        logger.info("Начало теста по удалению");
         Director dir = setUpBD.getDir();
         int dirActId = dir.getId();
         logger.debug(" Test {} ",dir);
@@ -77,7 +77,7 @@ public class DirectorsTest {
     @Story(value = "Получение")
     @Feature(value = "Много за раз")
     void checkList() {
-        logger.debug("Начало теста по проверке листа");
+        logger.info("Начало теста по проверке листа");
         List<String> genraa = List.of("Horror", "Fantasy", "Fart");
         List<Director> expList = List.of(impl.get(2));
         logger.debug("Test {} {}",genraa,expList);
@@ -87,6 +87,6 @@ public class DirectorsTest {
     @AfterEach
     void clearData() {
         setUpBD.deleteDataDirector();
-        logger.debug("Очитска данных после тестов");
+        logger.info("Очитска данных после тестов");
     }
 }
